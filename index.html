@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مكان MAKAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: a private-banking gateway for real estate investors, hushed and exact
+   IDEA an embossed investor passport opening a Najdi gate onto the Riyadh skyline
+   PICTURE dusk skyline (Kingdom Centre, Al Faisaliyah) behind a crenellated Najdi wall; passport card; drawn map
+   COLOUR deep emerald ground, warm white, burnished gold accent; night = same emerald world
+   TYPE Reem Kufi (Kufic display) + IBM Plex Sans Arabic, Inter for Latin labels
+   LAYOUT laptop: full-bleed scene, title in the sky corner; phone: title, scene, actions stacked */
+:root{color-scheme:light dark;--bg:light-dark(#fbf8f2,#061612);--ink:light-dark(#12231e,#ece5d6);--mut:light-dark(#5a6862,#9eb1a8);--card:light-dark(#ffffff,#0b211b);--sand:light-dark(#f3ecdf,#0e2720);--line:light-dark(#e6ddcb,#1e3b32);--em:#0a3a30;--em2:light-dark(#0d5544,#3fa489);--gold:light-dark(#9c7330,#d6ad62);--goldf:#c9a05a;--red:light-dark(#a3322a,#e57a70)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "IBM Plex Sans Arabic",Tahoma,sans-serif;overflow-x:clip}
+h1,h2,h3,.kufi{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,58px)}
+h2{font-size:clamp(28px,3.4vw,40px)}
+h3{font-size:20px}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.mut{color:var(--mut)}
+.en{font-family:Inter,"IBM Plex Sans Arabic",sans-serif;unicode-bidi:isolate;font-size:13px;color:var(--mut)}
+.hide{display:none!important}
+/* top bar */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--em) 96%,transparent);backdrop-filter:blur(8px);color:#f2ead9;border-bottom:1px solid #ffffff14}
+.top .wrap{display:flex;align-items:center;gap:14px;padding:10px max(5vw,16px);flex-wrap:wrap;max-width:none}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{font-family:"Reem Kufi";font-size:28px;line-height:1}
+.brand small{display:block;font:600 11px/1 Inter,sans-serif;color:var(--goldf);letter-spacing:.2em}
+.nav{display:flex;gap:2px;margin-inline-start:auto;overflow-x:auto;scrollbar-width:none}
+.nav a{flex:none;text-decoration:none;padding:10px 11px;border-radius:999px;color:#cfdcd4;font-weight:500;font-size:14.5px;min-height:44px;display:flex;align-items:center}
+.nav a:hover{color:#fff;background:#ffffff12}
+.nav a.on{color:#0a3a30;background:var(--goldf)}
+.tools{display:flex;gap:8px;align-items:center}
+.lang{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #ffffff38;background:transparent;color:#f2ead9;cursor:pointer;font-weight:600}
+.lang:hover{border-color:var(--goldf)}
+.acct{display:flex;align-items:center;gap:8px;min-height:40px;padding:3px 12px 3px 4px;border-radius:999px;background:#ffffff14;text-decoration:none;color:#f2ead9;font-size:14px;font-weight:600;max-width:200px}
+[dir=rtl] .acct{padding:3px 4px 3px 12px}
+.acct img{width:32px;height:32px;border-radius:50%;flex:none}
+.acct span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct.out{background:var(--goldf);color:#14241f;padding:0 16px}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;border:1px solid transparent;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.gold{background:var(--goldf);color:#14241f}
+.btn.gold:hover{background:#d9b36d}
+.btn.ghost{border-color:#ffffff40;color:#f2ead9;background:#ffffff0a}
+.btn.line{border-color:var(--line);background:var(--card)}
+.btn.line:hover{border-color:var(--gold)}
+.btn.em{background:var(--em2);color:#fff}
+.btn.sm{min-height:40px;padding:0 14px;font-size:14px;border-radius:10px}
+.btn.danger{border-color:color-mix(in srgb,var(--red) 40%,transparent);color:var(--red);background:var(--card)}
+.btn.danger.arm{background:var(--red);color:#fff}
+:focus-visible{outline:3px solid var(--goldf);outline-offset:2px}
+.page{display:none}.page.on{display:block}
+/* hero */
+.hero{position:relative;background:var(--em);color:#f4ecdc;overflow:hidden;min-height:clamp(520px,78vh,720px)}
+.hero svg.scene{position:absolute;inset:0;width:100%;height:100%}
+[dir=ltr] .hero svg.scene{transform:scaleX(-1)}
+.hero:after{content:"";position:absolute;inset:0 0 0 35%;background:linear-gradient(270deg,#05251dcc 0,#05251d88 45%,transparent);pointer-events:none;z-index:1}
+[dir=ltr] .hero:after{inset:0 35% 0 0;background:linear-gradient(90deg,#05251dcc 0,#05251d88 45%,transparent)}
+.hero .txt{position:relative;z-index:2;max-width:580px;padding:clamp(40px,7vw,96px) max(5vw,16px) 0}
+.hero p.lead{font-size:18px;color:#d5e1d9;margin:18px 0 26px;max-width:46ch}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.hero .en{color:#a9c2b8;margin-top:8px;display:block}
+/* sections */
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head p{max-width:60ch}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.svc a{background:var(--card);padding:26px;text-decoration:none;display:flex;flex-direction:column;gap:10px;min-height:210px;transition:background .2s}
+.svc a:hover{background:var(--sand)}
+.svc a.hub{background:var(--em);color:#f2ead9}
+.svc a.hub .mut{color:#b9cbc3}
+.svc svg{width:44px;height:44px;color:var(--gold)}
+.svc .go{margin-top:auto;font-weight:600;color:var(--gold)}
+.svc a.hub .go{color:var(--goldf)}
+.route{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;gap:12px;margin-top:8px}
+.route:before{content:"";position:absolute;top:27px;right:8%;left:8%;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 18px)}
+.stn{position:relative;text-align:center;padding:0 6px}
+.stn .dot{width:56px;height:56px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;background:var(--card);border:2px solid var(--gold);font:700 20px "Reem Kufi";color:var(--gold);position:relative}
+.stn.cur .dot{background:var(--gold);color:var(--card);box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 22%,transparent)}
+.stn.done .dot{background:var(--em2);border-color:var(--em2);color:#fff}
+.stn h3{font-size:17px}
+.stn p{font-size:14px;color:var(--mut)}
+.cta{background:var(--em);color:#f2ead9}
+.cta .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
+.cta p{color:#c4d4cc}
+.note{border-inline-start:3px solid var(--gold);background:var(--sand);padding:14px 18px;border-radius:10px;font-size:14px;color:var(--mut);margin-top:22px}
+footer{background:#04110d;color:#a9bcb3;padding:44px max(5vw,16px) 28px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px}
+footer h4{color:#f2ead9;margin:0 0 10px;font-size:15px}
+footer a{display:block;text-decoration:none;padding:3px 0}
+footer a:hover{color:var(--goldf)}
+footer .base{border-top:1px solid #ffffff14;margin-top:28px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.phead{background:var(--em);color:#f2ead9;padding:clamp(28px,4vw,48px) max(5vw,16px)}
+.phead p{color:#c4d4cc;max-width:62ch;margin-top:8px}
+.phead .en{color:#9fbab0}
+/* forms */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,2.5vw,28px)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600}
+input,select,textarea{font-size:16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;min-height:46px;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:start}
+.ai2{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.sticky{position:sticky;top:90px}
+.saveinfo{font-size:13px;color:var(--mut)}
+/* passport */
+.pp{aspect-ratio:1.42;border-radius:20px;background:radial-gradient(120% 90% at 85% 0%,#14614f,#0a3a30 55%,#062a22);color:#efe2c4;padding:clamp(18px,3vw,30px);position:relative;overflow:hidden;box-shadow:0 24px 50px -28px #062a22;display:flex;flex-direction:column}
+.pp .pat{position:absolute;inset:0;opacity:.16}
+.pp .row1{display:flex;justify-content:space-between;align-items:start;position:relative}
+.pp .ttl{font:700 clamp(18px,2.4vw,24px) "Reem Kufi";color:var(--goldf)}
+.pp .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 20px;margin-top:auto;position:relative}
+.pp .k{font-size:11px;color:#bcae8c}
+.pp .v{font-weight:600;font-size:clamp(13px,1.6vw,15px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp .mrz{font:600 clamp(9px,1.3vw,12px)/1.5 "Courier New",monospace;direction:ltr;color:#d8c79e;margin-top:12px;letter-spacing:.06em;position:relative;white-space:nowrap;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;font-size:14px;text-align:start}
+.chip:hover{border-color:var(--gold);background:var(--sand)}
+/* chat */
+.chatbox{display:flex;flex-direction:column;height:min(640px,75vh);padding:0;overflow:hidden}
+.chathead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);gap:10px;flex-wrap:wrap}
+.msgs{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:14px}
+.m{max-width:86%;padding:13px 16px;border-radius:16px;line-height:1.85;font-size:15.5px}
+.m.bot{background:var(--sand);align-self:flex-start;border-start-start-radius:4px}
+.m.me{background:var(--em2);color:#fff;align-self:flex-end;border-start-end-radius:4px;white-space:pre-wrap}
+.m ul{margin:6px 0;padding-inline-start:20px}
+.m p+p{margin-top:8px}
+.m .tool{font-size:12px;color:var(--gold);display:block;margin-bottom:4px}
+.compose{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line);background:var(--card)}
+.compose textarea{resize:none;min-height:48px;max-height:140px}
+.status{font-size:13px;display:flex;align-items:center;gap:8px}
+.status i{width:9px;height:9px;border-radius:50%;background:#c9a05a;display:inline-block}
+.status.live i{background:#2fb487}
+.side .grp{margin-top:18px}
+.side .grp b{display:block;font-size:14px;margin-bottom:8px;color:var(--gold)}
+/* providers */
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+.plist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s}
+.pc:hover{border-color:var(--gold)}
+.pc .hd{display:flex;gap:12px;align-items:center}
+.mono{width:52px;height:52px;border-radius:14px;background:var(--em);color:var(--goldf);display:grid;place-items:center;font:700 22px "Reem Kufi";flex:none}
+.tag{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:var(--sand);color:var(--mut);margin-block:2px;margin-inline-end:4px;text-decoration:none}
+.tag.warn{background:color-mix(in srgb,var(--gold) 16%,transparent);color:var(--gold)}
+.tag.ok{background:color-mix(in srgb,var(--em2) 16%,transparent);color:var(--em2)}
+.pc .acts{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
+.joinband{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:28px;background:var(--em);color:#f2ead9;border-radius:20px;padding:26px}
+.joinband p{color:#c4d4cc}
+dialog{border:0;border-radius:22px;padding:0;max-width:min(640px,94vw);width:100%;background:var(--card);color:var(--ink)}
+dialog::backdrop{background:#03110dcc}
+.dlg-h{background:var(--em);color:#f2ead9;padding:24px;display:flex;gap:14px;align-items:center}
+.dlg-b{padding:24px;display:grid;gap:16px}
+.x{margin-inline-start:auto;background:#ffffff14;border:0;border-radius:10px;width:44px;height:44px;color:#fff;cursor:pointer;font-size:20px}
+/* map */
+.mapw{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+.fig{position:relative;min-height:480px;background:radial-gradient(circle at 60% 45%,color-mix(in srgb,var(--em2) 10%,var(--card)),var(--card));border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;direction:ltr}
+.fig svg text{paint-order:stroke;stroke:var(--card);stroke-width:4px;font-family:"IBM Plex Sans Arabic",Inter;font-weight:600}
+.pin{cursor:pointer}
+.clist{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+/* costs */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.opt{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--bg)}
+.opt input,.task input{width:22px;height:22px;min-height:0;accent-color:#0d5544;flex:none}
+.opt .rng{margin-inline-start:auto;white-space:nowrap;font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.big{font:700 clamp(34px,5vw,54px)/1.05 "Reem Kufi";color:var(--gold);white-space:nowrap}
+.bars{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.bar .lb{display:flex;justify-content:space-between;font-size:14px;gap:10px}
+.bar .lb span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar .tr{height:12px;background:var(--sand);border-radius:99px;position:relative;margin-top:6px}
+.bar .fl{position:absolute;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--em2))}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-height:44px;border:1px solid var(--line);background:var(--bg);border-radius:10px;cursor:pointer}
+.seg button.on{background:var(--em2);color:#fff;border-color:var(--em2)}
+/* journey */
+.stage{display:grid;grid-template-columns:80px minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.stage .n{font:700 44px/1 "Reem Kufi";color:var(--gold)}
+.stage.cur .n{color:var(--em2)}
+.task{display:flex;gap:12px;align-items:center;padding:8px 0;cursor:pointer}
+.prog{height:12px;border-radius:99px;background:var(--sand);overflow:hidden;margin:10px 0}
+.prog span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--em2));transition:width .4s}
+/* account & admin */
+.who{display:flex;gap:18px;align-items:center}
+.who img{width:76px;height:76px;border-radius:50%;flex:none;border:3px solid var(--goldf)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:22px}
+.facts div{background:var(--card);padding:16px}
+.facts b{display:block;font-size:13px;color:var(--mut);font-weight:500}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:start;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:13px;color:var(--mut);font-weight:600}
+td .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.app{border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;background:var(--bg)}
+.toast{position:fixed;bottom:22px;left:22px;z-index:60;background:#0a3a30;color:#f2ead9;padding:14px 20px;border-radius:12px;box-shadow:0 10px 30px #0006;opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none;max-width:calc(100vw - 44px)}
+.toast.on{opacity:1;transform:none}
+@media(max-width:980px){.svc,.plist{grid-template-columns:repeat(2,minmax(0,1fr))}footer .wrap{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){.two,.ai2,.mapw,.calc,.cta .wrap,.joinband{grid-template-columns:1fr}.sticky{position:static}.filters{grid-template-columns:1fr 1fr}.filters .field:first-child{grid-column:1/-1}.facts{grid-template-columns:1fr}}
+@media(max-width:600px){.hero:after{display:none}.svc,.plist,.fgrid{grid-template-columns:1fr}.route{grid-template-columns:1fr;gap:0}.route:before{top:0;bottom:0;right:27px;left:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--gold) 0 10px,transparent 10px 18px)}[dir=ltr] .route:before{left:27px;right:auto}.stn{display:grid;grid-template-columns:56px 1fr;gap:0 14px;text-align:start;padding:8px 0}.stn .dot{margin:0;grid-row:span 2}.hero{min-height:0;display:flex;flex-direction:column}.hero .txt{padding-top:32px}.hero svg.scene{position:relative;order:1;height:300px;margin-top:24px}.opt{flex-wrap:wrap}.opt .rng{width:100%;margin-inline-start:34px}.stage{grid-template-columns:52px 1fr}.stage .n{font-size:32px}.m{max-width:94%}.fig{min-height:380px}.top .wrap{gap:8px}.nav{order:3;margin-inline-start:0;width:100%}.tools{margin-inline-start:auto}.acct span{display:none}[dir] .acct{padding:4px}.acct.out span{display:inline}[dir] .acct.out{padding:0 14px}table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:4px 0}.stack td::before{content:attr(data-l);color:var(--mut);font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@keyframes tw{50%{opacity:.25}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#home" aria-label="MAKAN">
+    <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 38V16l4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5v22z" fill="#c9a05a"/><path d="M14 38V26a6 6 0 0 1 12 0v12z" fill="#0a3a30"/><path d="M18 20l2-3 2 3z" fill="#0a3a30"/></svg>
+    <span><b data-t="brand">مَكان</b><small>MAKAN</small></span>
+  </a>
+  <nav class="nav" id="nav">
+    <a href="#home" data-t="nav_home"></a><a href="#passport" data-t="nav_pass"></a><a href="#assistant" data-t="nav_ai"></a><a href="#experts" data-t="nav_exp"></a><a href="#map" data-t="nav_map"></a><a href="#costs" data-t="nav_costs"></a><a href="#journey" data-t="nav_jr"></a><a href="#admin" data-t="nav_admin" class="hide" id="navAdmin"></a>
+  </nav>
+  <div class="tools"><button class="lang" id="langBtn" type="button" data-t="lang_btn"></button><a class="acct out" id="acct" href="#account"><span data-t="signin"></span></a></div>
+</div></header>
+
+<main>
+<section class="page" id="p-home">
+  <div class="hero">
+    <svg class="scene" id="scene" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+    <div class="txt">
+      <h1 data-t="hero_h"></h1><span class="en" data-t="hero_sub"></span>
+      <p class="lead" data-t="hero_p"></p>
+      <div class="acts"><a class="btn gold" href="#passport" data-t="hero_b1"></a><a class="btn ghost" href="#assistant" data-t="hero_b2"></a></div>
+    </div>
+  </div>
+  <div class="band"><div class="wrap">
+    <div class="sec-head"><div><h2 data-t="svc_h"></h2><span class="en" data-t="svc_sub"></span></div><p class="mut" data-t="svc_p"></p></div>
+    <div class="svc" id="svc"></div>
+  </div></div>
+  <div class="band" style="background:var(--sand)"><div class="wrap">
+    <div class="sec-head"><div><h2 data-t="route_h"></h2><span class="en" data-t="route_sub"></span></div><a class="btn line" href="#journey" data-t="route_btn"></a></div>
+    <div class="route" id="routeHome"></div>
+  </div></div>
+  <div class="band cta"><div class="wrap">
+    <div><h2 data-t="cta_h"></h2><p style="margin-top:10px" data-t="cta_p"></p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn gold" href="#passport" data-t="cta_b1"></a><a class="btn ghost" href="#join" data-t="cta_b2"></a></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-passport">
+  <div class="phead"><div class="wrap"><h1 data-t="pass_h"></h1><span class="en" data-t="pass_sub"></span><p data-t="pass_p"></p></div></div>
+  <div class="band"><div class="wrap two">
+    <form class="panel" id="ppForm">
+      <div class="fgrid">
+        <div class="field full"><label for="f-name" data-t="f_name"></label><input id="f-name" data-tph="f_name_ph"></div>
+        <div class="field"><label for="f-type" data-t="f_type"></label><select id="f-type"></select></div>
+        <div class="field"><label for="f-nat" data-t="f_nat"></label><input id="f-nat" data-tph="f_nat_ph"></div>
+        <div class="field"><label for="f-asset" data-t="f_asset"></label><select id="f-asset"></select></div>
+        <div class="field"><label for="f-city" data-t="f_city"></label><select id="f-city"></select></div>
+        <div class="field"><label for="f-stage" data-t="f_stage"></label><select id="f-stage"></select></div>
+        <div class="field"><label for="f-budget" data-t="f_budget"></label><input id="f-budget" type="number" min="0" step="100000" placeholder="20000000"></div>
+        <div class="field full"><label for="f-lang" data-t="f_lang"></label><select id="f-lang"></select></div>
+      </div>
+      <div class="row"><button class="btn em" type="submit" data-t="save"></button><a class="btn line" href="#assistant" data-t="ask_plan"></a><button class="btn line" type="button" id="ppReset" data-t="reset"></button></div>
+      <p class="saveinfo" id="ppSaveInfo" style="margin-top:12px"></p>
+    </form>
+    <div class="sticky"><div class="pp" id="ppCard"></div><p class="mut" style="font-size:14px;margin-top:12px" data-t="pass_live"></p></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-assistant">
+  <div class="phead"><div class="wrap"><h1 data-t="ai_h"></h1><span class="en" data-t="ai_sub"></span><p data-t="ai_p"></p></div></div>
+  <div class="band"><div class="wrap two ai2">
+    <div class="panel chatbox">
+      <div class="chathead"><b class="kufi" style="font-size:18px" data-t="ai_name"></b><span class="status" id="aiStatus"><i></i><span></span></span></div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <form class="compose" id="chatForm"><textarea id="q" rows="1" data-tph="q_ph"></textarea><button class="btn gold" id="sendBtn" type="submit" data-t="send"></button></form>
+    </div>
+    <aside class="panel side">
+      <h3 data-t="try"></h3>
+      <div id="suggest"></div>
+      <div class="note" id="ppMini"></div>
+      <button class="btn line" id="clearChat" type="button" style="margin-top:14px;width:100%" data-t="new_chat"></button>
+    </aside>
+  </div>
+  <div class="wrap"><p class="note" data-t="ai_disc"></p></div></div>
+</section>
+
+<section class="page" id="p-experts">
+  <div class="phead"><div class="wrap"><h1 data-t="exp_h"></h1><span class="en" data-t="exp_sub"></span><p data-t="exp_p"></p></div></div>
+  <div class="band"><div class="wrap">
+    <div class="panel filters">
+      <div class="field"><label for="s-q" data-t="s_q"></label><input id="s-q" data-tph="s_q_ph"></div>
+      <div class="field"><label for="s-cat" data-t="s_cat"></label><select id="s-cat"></select></div>
+      <div class="field"><label for="s-city" data-t="s_city"></label><select id="s-city"></select></div>
+    </div>
+    <p class="mut" id="pCount" style="margin-top:18px"></p>
+    <div class="plist" id="plist"></div>
+    <p class="note" id="pNote"></p>
+    <div class="joinband"><div><h3 data-t="join_cta_h"></h3><p data-t="join_cta_p" style="margin-top:6px"></p></div><a class="btn gold" href="#join" data-t="join_cta_b"></a></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-map">
+  <div class="phead"><div class="wrap"><h1 data-t="map_h"></h1><span class="en" data-t="map_sub"></span><p data-t="map_p"></p></div></div>
+  <div class="band"><div class="wrap mapw">
+    <div class="fig"><svg id="mapSvg" role="img"></svg></div>
+    <div class="panel" id="cityPanel"></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-costs">
+  <div class="phead"><div class="wrap"><h1 data-t="cost_h"></h1><span class="en" data-t="cost_sub"></span><p data-t="cost_p"></p></div></div>
+  <div class="band"><div class="wrap calc">
+    <div class="panel">
+      <h3 style="margin-bottom:14px" data-t="c_svcs"></h3>
+      <div id="optList" style="display:grid;gap:10px"></div>
+      <h3 style="margin:22px 0 10px" data-t="c_cx"></h3>
+      <div class="seg" id="cx"><button type="button" data-f="1" data-t="cx1"></button><button type="button" data-f="1.35" data-t="cx2"></button><button type="button" data-f="1.8" data-t="cx3"></button></div>
+      <div class="field" style="margin-top:18px"><label for="c-val" data-t="c_val"></label><input id="c-val" type="number" min="0" step="100000"></div>
+    </div>
+    <div class="panel sticky">
+      <span class="mut" data-t="c_total"></span>
+      <div class="big" id="cTotal"></div>
+      <span class="mut" id="cShare" style="font-size:14px"></span>
+      <div class="bars" id="cBars"></div>
+      <div class="row"><button class="btn line" id="cCopy" type="button" data-t="c_copy"></button><a class="btn em" href="#experts" data-t="c_req"></a></div>
+      <p class="note" data-t="c_note"></p>
+    </div>
+  </div></div>
+</section>
+
+<section class="page" id="p-journey">
+  <div class="phead"><div class="wrap"><h1 data-t="jr_h"></h1><span class="en" data-t="jr_sub"></span><p data-t="jr_p"></p></div></div>
+  <div class="band"><div class="wrap">
+    <div class="route" id="routeJ"></div>
+    <div class="panel" style="margin-top:32px">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h3 data-t="jr_list"></h3><span class="mut" id="jCount"></span></div>
+      <div class="prog"><span id="jProg"></span></div>
+      <div id="stages"></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="page" id="p-join">
+  <div class="phead"><div class="wrap"><h1 data-t="join_h"></h1><span class="en" data-t="join_sub"></span><p data-t="join_p"></p></div></div>
+  <div class="band"><div class="wrap two">
+    <form class="panel" id="joinForm">
+      <div id="joinFields"></div>
+      <div class="field" style="margin-top:16px"><label for="j-contact" data-t="j_contact"></label><input id="j-contact" required data-tph="j_contact_ph"></div>
+      <div class="row"><button class="btn gold" type="submit" id="joinBtn" data-t="j_submit"></button></div>
+      <p class="saveinfo" id="joinInfo" style="margin-top:12px"></p>
+    </form>
+    <div class="panel sticky" id="joinStatus"></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-account">
+  <div class="phead"><div class="wrap"><h1 data-t="acc_h"></h1><span class="en" data-t="acc_sub"></span></div></div>
+  <div class="band"><div class="wrap two">
+    <div class="panel" id="accPanel"></div>
+    <div class="panel"><h3 data-t="acc_how_h"></h3><p class="mut" style="margin-top:10px" data-t="acc_how_p"></p><p class="note" data-t="acc_note"></p></div>
+  </div></div>
+</section>
+
+<section class="page" id="p-admin">
+  <div class="phead"><div class="wrap"><h1 data-t="adm_h"></h1><span class="en" data-t="adm_sub"></span><p data-t="adm_p"></p></div></div>
+  <div class="band"><div class="wrap" id="admWrap">
+    <div class="two">
+      <form class="panel" id="admForm">
+        <h3 id="admFormH" style="margin-bottom:16px"></h3>
+        <div id="admFields"></div>
+        <div class="row"><button class="btn em" type="submit" id="admSave"></button><button class="btn line hide" type="button" id="admCancel" data-t="cancel"></button></div>
+      </form>
+      <div class="panel"><h3 data-t="adm_apps"></h3><div id="apps" style="display:grid;gap:12px;margin-top:14px"></div></div>
+    </div>
+    <div class="panel" style="margin-top:28px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><h3 data-t="adm_list"></h3><span class="mut" id="admCount"></span></div><div class="scroll" style="margin-top:10px"><table class="stack"><thead><tr><th data-t="th_name"></th><th data-t="th_cat"></th><th data-t="th_city"></th><th></th></tr></thead><tbody id="admRows"></tbody></table></div></div>
+  </div>
+  <div class="band hide" id="admDenied"><div class="wrap panel"><h3 data-t="adm_denied_h"></h3><p class="mut" data-t="adm_denied_p" style="margin-top:8px"></p></div></div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div><div class="brand"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 38V16l4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5v22z" fill="#c9a05a"/><path d="M14 38V26a6 6 0 0 1 12 0v12z" fill="#04110d"/></svg><b style="color:#f2ead9" data-t="brand"></b></div><p style="margin-top:12px;max-width:40ch" data-t="ft_about"></p></div>
+  <div><h4 data-t="ft_plat"></h4><a href="#passport" data-t="nav_pass"></a><a href="#assistant" data-t="nav_ai"></a><a href="#journey" data-t="nav_jr"></a><a href="#account" data-t="acc_h"></a></div>
+  <div><h4 data-t="ft_exp"></h4><a href="#experts" data-t="nav_exp"></a><a href="#map" data-t="nav_map"></a><a href="#costs" data-t="nav_costs"></a><a href="#join" data-t="join_h"></a></div>
+  <div><h4 data-t="ft_contact"></h4><span style="display:block">hello@makan.example</span><span style="display:block;direction:ltr;text-align:start;unicode-bidi:isolate">+966 55 555 0100</span><span style="display:block" data-t="ft_city"></span></div>
+</div><div class="wrap base"><span data-t="ft_copy"></span><span class="en" style="color:#7f968c" data-t="ft_tag"></span></div></footer>
+
+<dialog id="dlg"></dialog>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+<script>
+{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3400)}
+
+/* ---------- language ---------- */
+let L=store.get('makan_lang','ar');
+const D={
+brand:['مَكان','MAKAN'],nav_home:['الرئيسية','Home'],nav_pass:['جواز المستثمر','Investor passport'],nav_ai:['المساعد الذكي','AI assistant'],nav_exp:['مزودو الخدمات','Providers'],nav_map:['خريطة المملكة','Kingdom map'],nav_costs:['مكتبة التكاليف','Cost library'],nav_jr:['رحلة الاستثمار','Journey'],nav_admin:['لوحة الإدارة','Admin'],
+lang_btn:['English','العربية'],signin:['تسجيل الدخول','Sign in'],
+hero_h:['استثمر في العقار السعودي بثقة، والخبرة كلها في مكان واحد','Invest in Saudi real estate with confidence. All the expertise, in one place.'],hero_sub:['Your trusted gateway to Saudi real estate','بوابتك الموثوقة إلى العقار السعودي'],
+hero_p:['جواز استثماري واحد يعرّف بك، ومساعد ذكي يرتّب مسارك، وشبكة من المحامين والمهندسين والمقيّمين تختار منها بوضوح.','One investor passport that introduces you, an AI assistant that maps your path, and a network of lawyers, engineers and valuers to choose from with clarity.'],
+hero_b1:['أنشئ جوازك الاستثماري','Create your investor passport'],hero_b2:['اسأل المساعد الذكي','Ask the AI assistant'],
+svc_h:['جواز واحد يفتح كل الخدمات','One passport opens every service'],svc_sub:['One passport. Five services.','جواز واحد، خمس خدمات'],svc_p:['يبدأ كل شيء من جواز المستثمر؛ بياناته تخصّص إجابات المساعد، وترشيحات المزودين، وتقدير التكاليف، ومرحلتك في الرحلة.','Everything starts with the investor passport: it tailors the assistant’s answers, provider suggestions, cost estimates and your place in the journey.'],
+route_h:['رحلة الاستثمار في خمس محطات','The investment journey in five stations'],route_sub:['The investment journey','رحلة الاستثمار'],route_btn:['افتح قائمة المتابعة','Open the checklist'],
+cta_h:['جاهز لتبدأ؟','Ready to begin?'],cta_p:['سجّل دخولك، أنشئ جوازك في دقيقتين، ثم اطلب من المساعد خطة أولية وترشيحات تناسب مدينتك ونوع أصلك.','Sign in, create your passport in two minutes, then ask the assistant for a first plan and suggestions for your city and asset.'],cta_b1:['ابدأ بالجواز','Start with the passport'],cta_b2:['انضم كمزود خدمة','Join as a provider'],
+pass_h:['جواز المستثمر','Investor passport'],pass_sub:['Investor Passport','جواز المستثمر'],pass_p:['ملف موحّد يخصّص تجربة مكان بحسب صفتك ونوع أصلك ومدينتك ومرحلتك. ليس وثيقة رسمية أو ترخيصًا.','A single profile that tailors MAKAN to your investor type, asset, city and stage. It is not an official document or licence.'],
+f_name:['الاسم أو اسم المنشأة','Name or company'],f_name_ph:['مثال: International Holdings','e.g. International Holdings'],f_type:['صفة المستثمر','Investor type'],f_nat:['الدولة / الجنسية','Country / nationality'],f_nat_ph:['مثال: الإمارات','e.g. United Kingdom'],f_asset:['نوع الأصل','Asset type'],f_city:['المدينة المستهدفة','Target city'],f_stage:['مرحلة الاستثمار','Investment stage'],f_budget:['القيمة التقريبية (ر.س)','Approximate value (SAR)'],f_lang:['لغة التواصل المفضلة','Preferred language'],
+save:['حفظ الجواز','Save passport'],ask_plan:['اطلب خطة من المساعد','Ask for a plan'],reset:['مسح','Clear'],pass_live:['تتحدّث البطاقة مباشرة أثناء الكتابة. رقم الجواز رمز داخلي للمنصة.','The card updates as you type. The passport number is an internal MAKAN code.'],
+save_cloud:['يُحفظ جوازك في حسابك ويظهر لك من أي جهاز.','Your passport is saved to your account and follows you to any device.'],save_local:['يُحفظ في هذا المتصفح فقط. سجّل دخولك لحفظه في حسابك.','Saved in this browser only. Sign in to keep it in your account.'],saved_cloud:['تم حفظ جوازك في حسابك','Passport saved to your account'],saved_local:['تم حفظ جوازك في هذا المتصفح','Passport saved in this browser'],
+ai_h:['المساعد الذكي','AI assistant'],ai_sub:['MAKAN AI Copilot','مساعد مكان الذكي'],ai_p:['توجيه استرشادي في ثلاثة محاور: الأهلية الأولية، مسار الاستثمار، والخدمات والخبراء. يقرأ جوازك ودليل المزودين قبل أن يجيب.','Guidance across three areas: initial eligibility, your investment path, and services and experts. It reads your passport and the provider directory before answering.'],
+ai_name:['مساعد مكان','MAKAN assistant'],try:['جرّب سؤالًا','Try a question'],new_chat:['محادثة جديدة','New chat'],q_ph:['اكتب سؤالك بالعربية أو English…','Ask in English or العربية…'],send:['إرسال','Send'],
+ai_disc:['المساعد لا يقدّم مشورة قانونية أو مالية ملزمة. تحقّق من الأنظمة والرسوم لدى الهيئة العامة للعقار والجهات الرسمية، ومع مستشار مرخّص.','The assistant does not give binding legal or financial advice. Confirm rules and fees with the Real Estate General Authority, official bodies and a licensed adviser.'],
+ai_live:['متصل · Claude','Live · Claude'],ai_off:['وضع محدود','Limited mode'],ai_init:['جارٍ التهيئة…','Starting…'],ai_thinking:['يفكّر…','Thinking…'],ai_limited:['وضع محدود: المساعد الذكي غير متاح في هذا العرض.','Limited mode: the AI assistant is not available in this view.'],
+ai_hello:['أهلًا بك في **مكان**.\nأستطيع مساعدتك في:\n- فهم ما تحتاج التحقق منه بخصوص **الأهلية** الأولية\n- ترتيب **مسار الاستثمار** بحسب مرحلتك\n- ترشيح **الخدمات والخبراء** من دليل المنصة وتقدير تكاليفها\nاكتب سؤالك، أو اختر واحدًا من الاقتراحات.','Welcome to **MAKAN**.\nI can help you:\n- understand what to check about initial **eligibility**\n- lay out your **investment path** for your stage\n- suggest **services and experts** from the directory and estimate their cost\nType a question or pick a suggestion.'],
+g_elig:['الأهلية','Eligibility'],g_inv:['الاستثمار','Investment'],g_svc:['الخدمات','Services'],
+ai_pp_yes:['المساعد يقرأ جوازك:','The assistant reads your passport:'],ai_pp_no:['لم تحفظ جوازك بعد؛ <a href="#passport">أنشئه الآن</a> لتحصل على إجابات مخصّصة.','No passport yet. <a href="#passport">Create one</a> for tailored answers.'],
+tool_find:['بحث في دليل المزودين','Searching the provider directory'],tool_cost:['حساب التكاليف التقديرية','Estimating costs'],err_rate:['طلبات كثيرة في وقت قصير؛ انتظر قليلًا ثم أعد المحاولة.','Too many requests. Wait a moment and try again.'],err_gen:['تعذّر الحصول على إجابة الآن. حاول مرة أخرى.','Could not get an answer right now. Try again.'],
+exp_h:['مزودو الخدمات المهنية','Professional service providers'],exp_sub:['Provider marketplace','سوق مزودي الخدمات'],exp_p:['ابحث وقارن بين المحامين والمكاتب الهندسية والمقيّمين ومستشاري الاستثمار وشركات إدارة الأملاك.','Search and compare lawyers, engineering firms, valuers, investment advisers and property managers.'],
+s_q:['بحث','Search'],s_q_ph:['اسم، خدمة، لغة…','Name, service, language…'],s_cat:['التخصص','Specialty'],s_city:['المدينة','City'],all_cats:['كل التخصصات','All specialties'],all_cities:['جميع المدن','All cities'],
+n_found:['ملفًا مطابقًا','matching profiles'],none_h:['لا توجد نتائج','No results'],none_p:['جرّب مدينة أخرى أو امسح البحث.','Try another city or clear the search.'],empty_h:['لا يوجد مزودون بعد','No providers yet'],empty_p:['يضيف المشرفون المزودين من لوحة الإدارة.','Admins add providers from the admin panel.'],loading:['جارٍ تحميل الدليل…','Loading the directory…'],
+p_note_db:['الدليل يُدار من لوحة الإدارة. علامة «غير متحقق» تعني أن الترخيص لم يُراجع بعد؛ تحقّق منه قبل التعاقد.','The directory is managed from the admin panel. “Not verified” means the licence has not been reviewed yet; check it before you sign.'],
+p_note_demo:['تعرض الآن ملفات تجريبية. سجّل دخولك لرؤية الدليل المحدّث.','You are seeing sample profiles. Sign in to see the live directory.'],
+unverified:['الترخيص غير متحقق','Licence not verified'],verified:['تمت مراجعة الترخيص','Licence reviewed'],profile:['الملف المهني','Profile'],contact:['طلب تواصل','Contact'],
+d_svcs:['الخدمات','Services'],d_langs:['اللغات','Languages'],d_resp:['الاستجابة المعتادة','Usual response'],d_note:['قبل التعاقد تحقّق من الترخيص لدى الجهة المختصة.','Before signing, check the licence with the relevant authority.'],d_req:['طلب تواصل','Contact request'],d_msg:['ملخص احتياجك','Your need in brief'],d_send:['إرسال الطلب (تجريبي)','Send request (demo)'],d_sent:['سُجّل طلبك داخل النموذج التجريبي فقط؛ لم يُرسل لأي جهة','Recorded in the demo only; nothing was sent'],
+join_cta_h:['تقدّم خدمات مهنية للمستثمرين؟','Do you serve real estate investors?'],join_cta_p:['قدّم طلب انضمام، ويراجعه فريق مكان قبل ظهور ملفك في الدليل.','Apply to join; the MAKAN team reviews it before your profile appears.'],join_cta_b:['قدّم طلب انضمام','Apply to join'],
+map_h:['خريطة المملكة','Kingdom map'],map_sub:['Providers across the Kingdom','المزودون في أنحاء المملكة'],map_p:['اختر مدينة لترى مزودي الخدمات فيها. الحدود والمواقع تقريبية للعرض.','Pick a city to see its providers. Borders and positions are approximate.'],
+map_sel:['المدينة المختارة','Selected city'],map_n:['مزودين في الدليل','providers in the directory'],map_none:['لا يوجد مزودون بعد.','No providers yet.'],map_all:['عرض الكل في قائمة المزودين','Show all in the directory'],
+cost_h:['مكتبة التكاليف','Cost library'],cost_sub:['Professional services cost planner','مخطط تكاليف الخدمات المهنية'],cost_p:['اختر الخدمات وتعقيد الحالة لتحصل على نطاق ميزانية تقديري للخدمات المهنية.','Pick services and complexity to get an indicative budget range for professional services.'],
+c_svcs:['الخدمات المطلوبة','Services needed'],c_cx:['تعقيد الحالة','Complexity'],cx1:['بسيط','Simple'],cx2:['متوسط','Moderate'],cx3:['معقّد','Complex'],c_val:['قيمة الأصل التقريبية (ر.س)','Approximate asset value (SAR)'],c_total:['النطاق التقديري الكلي','Indicative total range'],c_copy:['نسخ الملخص','Copy summary'],c_req:['اطلب عروضًا فعلية','Request real quotes'],c_pick:['اختر خدمة','Pick a service'],
+c_note:['الأرقام افتراضية لتوضيح التجربة، وليست رسومًا رسمية أو أسعار سوق متحققًا منها. التكلفة الحقيقية تحددها العروض الفعلية ونطاق العمل.','Figures are illustrative, not official fees or verified market prices. Real costs depend on actual quotes and scope.'],
+c_k:['ألف ر.س','k SAR'],sar:['ر.س','SAR'],c_share:['نحو {a}٪ إلى {b}٪ من قيمة الأصل','About {a}% to {b}% of the asset value'],copied:['نُسخ الملخص','Summary copied'],copy_fail:['تعذّر النسخ في هذا العرض','Copy is not available here'],
+jr_h:['رحلة الاستثمار','Investment journey'],jr_sub:['Your investment journey','رحلة استثمارك'],jr_p:['خمس محطات، لكل منها الخدمات المهنية التي تحتاجها وقائمة متابعة.','Five stations, each with the professional services you need and a checklist.'],jr_list:['قائمة المتابعة','Checklist'],jr_cur:['مرحلتك الحالية','Your current stage'],jr_svcs:['الخدمات:','Services:'],jr_of:['من','of'],jr_done:['مكتمل','done'],
+join_h:['انضم كمزود خدمة','Join as a provider'],join_sub:['Provider application','طلب انضمام مزود'],join_p:['عبّئ ملفك المهني بالعربية والإنجليزية. يراجع فريق مكان الطلب، وبعد الموافقة يظهر ملفك في الدليل والخريطة ولدى المساعد الذكي.','Fill in your profile in Arabic and English. The MAKAN team reviews it; once approved, it appears in the directory, the map and the assistant.'],
+j_contact:['بريد أو جوال للتواصل','Contact email or phone'],j_contact_ph:['name@firm.sa','name@firm.sa'],j_submit:['إرسال الطلب','Submit application'],j_sent:['وصل طلبك وسيُراجع قريبًا','Application received; it will be reviewed soon'],
+j_need_in:['سجّل دخولك أولًا لتقديم الطلب.','Sign in first to apply.'],j_cant:['حسابك على هذه الصفحة للعرض فقط، فلا يمكن حفظ الطلب هنا. راسلنا على hello@makan.example.','Your access to this page is view-only, so the application cannot be saved here. Email hello@makan.example.'],
+j_status_h:['حالة طلبك','Your application'],j_none:['لم تقدّم طلبًا بعد.','No application yet.'],st_pending:['قيد المراجعة','Under review'],st_approved:['مقبول، ملفك ظاهر في الدليل','Approved: your profile is live'],st_rejected:['لم يُقبل هذه المرة','Not approved this time'],
+acc_h:['حسابي','My account'],acc_sub:['Account','الحساب'],acc_in:['مسجّل الدخول','Signed in'],acc_out_h:['أنت غير مسجّل الدخول','You are not signed in'],acc_out_p:['سجّل دخولك بحساب Claude لحفظ جوازك وقائمة متابعتك في حسابك، واستخدام المساعد الذكي، والتقديم كمزود.','Sign in with your Claude account to keep your passport and checklist in your account, use the AI assistant and apply as a provider.'],acc_btn:['تسجيل الدخول','Sign in'],
+acc_role:['الصلاحية','Role'],acc_data:['حفظ البيانات','Your data'],acc_ai:['المساعد الذكي','AI assistant'],role_owner:['مالك المنصة','Owner'],role_admin:['مشرف','Admin'],role_member:['عضو','Member'],role_viewer:['زائر','Visitor'],data_cloud:['في حسابك','In your account'],data_local:['في هذا المتصفح','In this browser'],on:['متاح','Available'],off:['غير متاح','Unavailable'],acc_admin_btn:['افتح لوحة الإدارة','Open admin panel'],
+acc_how_h:['كيف يعمل تسجيل الدخول؟','How sign-in works'],acc_how_p:['يعتمد مكان على حساب Claude الخاص بك: لا كلمات مرور جديدة ولا نماذج تسجيل. اسمك وصورتك يظهران لك فقط، ونحفظ معرّفًا داخليًا يربط جوازك بحسابك.','MAKAN uses your Claude account: no new passwords or sign-up forms. Your name and photo are shown to you only; we keep an internal id that links your passport to your account.'],
+acc_note:['جوازك وقائمة متابعتك خاصة بك؛ لا يراها أحد غيرك، ولا حتى مشرفو المنصة.','Your passport and checklist are private to you; nobody else sees them, admins included.'],
+adm_h:['لوحة الإدارة','Admin panel'],adm_sub:['Manage providers','إدارة المزودين'],adm_p:['أضف مزودين أو عدّلهم أو احذفهم، وراجع طلبات الانضمام. التغييرات تظهر فورًا لكل الزوار.','Add, edit or remove providers and review applications. Changes show to every visitor at once.'],
+adm_add:['إضافة مزود جديد','Add a provider'],adm_edit:['تعديل المزود','Edit provider'],adm_save_new:['إضافة المزود','Add provider'],adm_save_edit:['حفظ التعديلات','Save changes'],cancel:['إلغاء','Cancel'],adm_apps:['طلبات الانضمام','Applications'],adm_noapps:['لا توجد طلبات جديدة.','No new applications.'],adm_list:['المزودون في الدليل','Providers in the directory'],
+th_name:['الاسم','Name'],th_cat:['التخصص','Specialty'],th_city:['المدينة','City'],edit:['تعديل','Edit'],del:['حذف','Delete'],del_sure:['تأكيد الحذف','Confirm delete'],approve:['قبول ونشر','Approve'],reject:['رفض','Reject'],
+a_nameAr:['الاسم بالعربية','Name in Arabic'],a_nameEn:['الاسم بالإنجليزية','Name in English'],a_cat:['التخصص','Specialty'],a_city:['المدينة','City'],a_langs:['لغات التواصل (افصل بفاصلة)','Languages (comma separated)'],a_svcAr:['الخدمات بالعربية (سطر لكل خدمة)','Services in Arabic (one per line)'],a_svcEn:['الخدمات بالإنجليزية (سطر لكل خدمة)','Services in English (one per line)'],a_resp:['الاستجابة المعتادة','Usual response time'],a_ver:['تمت مراجعة الترخيص','Licence reviewed'],
+adm_added:['أُضيف المزود','Provider added'],adm_saved:['حُفظت التعديلات','Changes saved'],adm_deleted:['حُذف المزود','Provider deleted'],adm_approved:['قُبل الطلب ونُشر الملف','Approved and published'],adm_rejected:['رُفض الطلب','Application rejected'],adm_err:['تعذّر الحفظ. تحقّق من صلاحيتك وحاول مجددًا.','Could not save. Check your access and try again.'],adm_need:['الاسم بالعربية أو الإنجليزية مطلوب','A name in Arabic or English is required'],
+adm_denied_h:['هذه الصفحة للمشرفين','This page is for admins'],adm_denied_p:['تظهر لوحة الإدارة لمالك المنصة ومن يمنحه صلاحية «محرر» من زر المشاركة.','The admin panel shows for the owner and anyone given Editor access from the Share menu.'],
+ft_about:['منصة ترافق المستثمر في العقار السعودي من أول سؤال حتى تشغيل الأصل.','A platform that walks with investors in Saudi real estate from the first question to running the asset.'],ft_plat:['المنصة','Platform'],ft_exp:['الخبرة','Expertise'],ft_contact:['تواصل','Contact'],ft_city:['الرياض، المملكة العربية السعودية','Riyadh, Saudi Arabia'],ft_copy:['© 2026 مكان MAKAN — نموذج تجريبي؛ بيانات التواصل أمثلة.','© 2026 MAKAN — prototype; contact details are examples.'],ft_tag:['Built for investors, by people who check twice.','صُمّم للمستثمرين، بأيدٍ تتحقّق مرتين.'],
+open:['افتح ←','Open →'],start_here:['ابدأ من هنا ←','Start here →']};
+Object.assign(D,{
+ acc_email:['بريدك الإلكتروني','Your email'],acc_send:['أرسل رابط الدخول','Send sign-in link'],acc_sent:['أرسلنا رابط الدخول إلى بريدك. افتحه من هذا الجهاز.','We sent a sign-in link to your email. Open it on this device.'],acc_err:['تعذّر الإرسال. تحقّق من البريد وحاول بعد دقيقة.','Could not send. Check the address and try again in a minute.'],signout:['تسجيل الخروج','Sign out'],
+ acc_out_p:['سجّل دخولك ببريدك الإلكتروني لحفظ جوازك وقائمة متابعتك، واستخدام المساعد الذكي، والتقديم كمزود.','Sign in with your email to keep your passport and checklist, use the AI assistant and apply as a provider.'],
+ acc_how_p:['لا كلمات مرور: تكتب بريدك، يصلك رابط، تضغطه وتدخل. نحفظ معرّفًا داخليًا يربط جوازك بحسابك.','No passwords: enter your email, get a link, tap it and you are in. We keep an internal id that links your passport to your account.'],
+ save_local:['يُحفظ في هذا المتصفح فقط. سجّل دخولك لحفظه في حسابك.','Saved in this browser only. Sign in to keep it in your account.'],
+ ai_limited:['سجّل دخولك من «حسابي» لتفعيل المساعد الذكي الكامل؛ هذه إجابة جاهزة.','Sign in from “My account” to turn on the full AI assistant; this is a prepared answer.'],ai_live:['متصل · Claude','Live · Claude'],ai_off:['سجّل الدخول للتفعيل','Sign in to enable'],
+ j_cant:['تعذّر حفظ الطلب. حاول مرة أخرى.','Could not save the application. Try again.'],
+ adm_denied_p:['لوحة الإدارة تظهر للحسابات المضافة كمشرفين في قاعدة البيانات (جدول admins).','The admin panel shows for accounts added as admins in the database (admins table).'],
+ p_note_demo:['ملفات المزودين المعروضة أمثلة توضيحية؛ لم يُتحقق من تراخيصها.','Provider profiles shown are illustrative examples; licences are not verified.']});
+const t=k=>D[k]?D[k][L==='en'?1:0]:k;
+const tx=o=>o?(L==='en'?(o.en||o.ar):(o.ar||o.en)):'';
+
+/* ---------- data ---------- */
+const CITIES=[{k:'riyadh',ar:'الرياض',en:'Riyadh',lon:46.72,lat:24.71,lab:[1,5]},{k:'jeddah',ar:'جدة',en:'Jeddah',lon:39.17,lat:21.54,lab:[-1,-10]},{k:'dammam',ar:'الدمام',en:'Dammam',lon:50.10,lat:26.43,lab:[1,5]},{k:'makkah',ar:'مكة المكرمة',en:'Makkah',lon:39.83,lat:21.42,lab:[1,20]},{k:'madinah',ar:'المدينة المنورة',en:'Madinah',lon:39.61,lat:24.47,lab:[-1,5]}];
+const CITY=k=>CITIES.find(c=>c.k===k);
+const CATS={legal:{ar:'خدمات قانونية',en:'Legal'},eng:{ar:'مكاتب هندسية',en:'Engineering'},val:{ar:'تقييم عقاري',en:'Valuation'},adv:{ar:'استشارات استثمارية',en:'Investment advisory'},pm:{ar:'إدارة أملاك',en:'Property management'}};
+const RESP={d1:{ar:'خلال يوم عمل',en:'Within 1 business day'},d2:{ar:'خلال يومي عمل',en:'Within 2 business days'},d3:{ar:'خلال 3 أيام',en:'Within 3 days'}};
+const TYPES={ind:{ar:'مستثمر فردي',en:'Individual investor'},co:{ar:'شركة أجنبية',en:'Foreign company'},fund:{ar:'صندوق استثماري',en:'Investment fund'},dev:{ar:'مطور عقاري',en:'Developer'}};
+const ASSETS={com:{ar:'عقار تجاري',en:'Commercial property'},res:{ar:'عقار سكني',en:'Residential property'},dev:{ar:'تطوير عقاري',en:'Development'},port:{ar:'محفظة أصول',en:'Asset portfolio'}};
+const LANGS={ar:{ar:'العربية',en:'Arabic'},en:{ar:'English',en:'English'},both:{ar:'العربية و English',en:'Arabic and English'}};
+const STAGES=[
+ {ar:'استكشاف الفرص',en:'Exploring',dar:'فهم السوق والمدينة والمتطلبات',den:'Market, city and requirements',cats:['adv'],t:[['تحديد هدف الاستثمار ونوع الأصل','Set the investment goal and asset type'],['دراسة السوق في المدينة المستهدفة','Study the market in the target city'],['مراجعة متطلبات التملك لدى الجهات الرسمية','Review ownership requirements with official bodies']]},
+ {ar:'تقييم الأصل',en:'Assessing the asset',dar:'تقييم معتمد وفحص فني',den:'Accredited valuation and inspection',cats:['val','eng'],t:[['طلب تقييم من مقيّم معتمد','Commission an accredited valuation'],['فحص فني وهندسي للأصل','Technical and engineering inspection'],['مراجعة الصك والقيود المسجلة','Review the title deed and registered restrictions']]},
+ {ar:'الاستحواذ والتعاقد',en:'Acquisition',dar:'فحص قانوني وصياغة العقود',den:'Legal due diligence and contracts',cats:['legal'],t:[['فحص قانوني نافٍ للجهالة','Legal due diligence'],['صياغة العقد ومراجعته','Draft and review the contract'],['إتمام نقل الملكية عبر القنوات الرسمية','Complete the transfer through official channels']]},
+ {ar:'التطوير والتنفيذ',en:'Development',dar:'تصاميم وتصاريح وإشراف',den:'Design, permits and supervision',cats:['eng'],t:[['اعتماد التصاميم واستخراج التصاريح','Approve designs and obtain permits'],['اختيار المقاول وعقد الإشراف','Select the contractor and supervision']]},
+ {ar:'التشغيل والإدارة',en:'Operation',dar:'إدارة الأصل والصيانة',den:'Asset management and maintenance',cats:['pm'],t:[['التعاقد مع شركة إدارة أملاك','Appoint a property manager'],['خطة صيانة وتقارير أداء دورية','Maintenance plan and regular reporting']]}];
+const COSTS=[{k:'legal',ar:'الفحص القانوني والعقود',en:'Legal review and contracts',lo:15000,hi:60000},{k:'val',ar:'التقييم العقاري',en:'Valuation',lo:5000,hi:25000},{k:'eng',ar:'الفحص الهندسي',en:'Engineering inspection',lo:8000,hi:40000},{k:'adv',ar:'دراسة الجدوى',en:'Feasibility study',lo:20000,hi:90000},{k:'pm',ar:'إعداد إدارة الأملاك',en:'Property management setup',lo:10000,hi:30000}];
+/* shown only to signed-out visitors, never written to the database */
+const DEMO=[
+ ['دار الميثاق للمحاماة','Al Mithaq Law','legal','riyadh','العربية, English',['الفحص القانوني للعقار','هيكلة تملك غير السعوديين'],['Property due diligence','Non-Saudi ownership structuring'],'d1'],
+ ['مكتب السدرة القانوني','Al Sidra Legal','legal','jeddah','العربية, English, Français',['مراجعة العقود التجارية'],['Commercial contract review'],'d2'],
+ ['مجموعة الركائز الهندسية','Al Rakaez Engineering','eng','riyadh','العربية, English',['الفحص الفني للمباني','الإشراف على التنفيذ'],['Building inspection','Construction supervision'],'d3'],
+ ['أفق للتقييم العقاري','Ufuq Valuation','val','riyadh','العربية, English',['تقييم الأصول التجارية'],['Commercial asset valuation'],'d1'],
+ ['قيمة للتقييم','Qeema Valuation','val','dammam','العربية',['تقييم سكني وتجاري'],['Residential and commercial valuation'],'d2'],
+ ['بوابة الحرمين للاستشارات','Haramain Gate Advisory','adv','makkah','العربية, English, Bahasa',['فرص الضيافة والفنادق'],['Hospitality opportunities'],'d3'],
+ ['نخيل لإدارة الأملاك','Nakheel Property Management','pm','madinah','العربية, English',['إدارة التأجير والتحصيل'],['Leasing and collection'],'d1']].map((r,i)=>({id:'demo'+i,nameAr:r[0],nameEn:r[1],cat:r[2],city:r[3],langs:r[4],svcAr:r[5],svcEn:r[6],resp:r[7],verified:false}));
+let PROVS=DEMO,provMode='demo';
+const pName=p=>L==='en'?(p.nameEn||p.nameAr):(p.nameAr||p.nameEn);
+const pSvc=p=>{const a=L==='en'?(p.svcEn&&p.svcEn.length?p.svcEn:p.svcAr):(p.svcAr&&p.svcAr.length?p.svcAr:p.svcEn);return Array.isArray(a)?a:[]};
+
+/* ---------- capabilities ---------- */
+let sample=null,sb=null,SESSION=null,ME=null,UID=null,ADMIN=false,cloud=false;
+const must=r=>{if(r&&r.error)throw r.error;return r?r.data:null};
+const fromRow=r=>({id:r.id||r.user_id,raw:r,nameAr:String(r.name_ar||''),nameEn:String(r.name_en||''),cat:CATS[r.cat]?r.cat:'adv',city:CITY(r.city)?r.city:'riyadh',langs:String(r.langs||''),resp:RESP[r.resp]?r.resp:'d2',svcAr:Array.isArray(r.svc_ar)?r.svc_ar.map(String):[],svcEn:Array.isArray(r.svc_en)?r.svc_en.map(String):[],verified:!!r.verified,status:r.status,contact:r.contact});
+const toRow=p=>({name_ar:p.nameAr,name_en:p.nameEn,cat:p.cat,city:p.city,langs:p.langs,resp:p.resp,svc_ar:p.svcAr,svc_en:p.svcEn});
+const avatar=e=>{const c=(String(e||'?').trim().charAt(0)||'?').toUpperCase();return 'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="#c9a05a"/><text x="20" y="26" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#0a3a30">${c.replace(/[<&>"]/g,'')}</text></svg>`)};
+
+/* ---------- icons ---------- */
+const IC={
+ pass:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="10" y="5" width="28" height="38" rx="4"/><circle cx="24" cy="21" r="7"/><path d="M17 21h14M24 14c3 3 3 11 0 14M24 14c-3 3-3 11 0 14M17 34h14"/></svg>',
+ ai:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 6l3.5 10.5L38 20l-10.5 3.5L24 34l-3.5-10.5L10 20l10.5-3.5z"/><path d="M37 32l1.6 4.4L43 38l-4.4 1.6L37 44l-1.6-4.4L31 38l4.4-1.6z"/></svg>',
+ pro:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="17" cy="16" r="6"/><circle cx="33" cy="18" r="5"/><path d="M6 40c1-8 6-12 11-12s10 4 11 12M27 40c.6-6 3.4-9 6-9s6.4 3 9 9"/></svg>',
+ map:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M24 43s13-12 13-23a13 13 0 0 0-26 0c0 11 13 23 13 23z"/><circle cx="24" cy="20" r="5"/></svg>',
+ cost:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="7" y="9" width="34" height="30" rx="4"/><path d="M7 18h34M15 27h6M15 32h10M30 26v8M27 29h6"/></svg>',
+ road:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="10" cy="38" r="4"/><circle cx="38" cy="10" r="4"/><path d="M14 38h14a6 6 0 0 0 0-12h-8a6 6 0 0 1 0-12h14" stroke-dasharray="3 4"/></svg>'};
+const SVCS=[['pass',['جواز المستثمر','Investor passport'],['نقطة البداية: صفتك وأصلك ومدينتك ومرحلتك في ملف واحد.','The starting point: your type, asset, city and stage in one profile.'],'#passport',1],['ai',['المساعد الذكي','AI assistant'],['الأهلية الأولية، خطة الاستثمار، والخدمات المناسبة لحالتك.','Initial eligibility, an investment plan and the right services.'],'#assistant'],['pro',['مزودو الخدمات','Providers'],['ملفات مهنية للمحامين والمهندسين والمقيّمين ومديري الأملاك.','Profiles of lawyers, engineers, valuers and property managers.'],'#experts'],['map',['خريطة المملكة','Kingdom map'],['استكشف المزودين بحسب المدينة على خريطة تفاعلية.','Explore providers city by city on an interactive map.'],'#map'],['cost',['مكتبة التكاليف','Cost library'],['نطاق ميزانية تقديري للخدمات المهنية قبل طلب العروض.','An indicative budget for professional services before quotes.'],'#costs'],['road',['رحلة الاستثمار','Investment journey'],['خمس محطات وقائمة متابعة تعرف أين أنت منها.','Five stations and a checklist that knows where you are.'],'#journey']];
+const li=a=>a[L==='en'?1:0];
+
+/* ---------- passport ---------- */
+const DEF={name:'',type:'co',nat:'',asset:'com',city:'riyadh',stage:1,budget:'',lang:'both'};
+let PP=Object.assign({},DEF,store.get('makan_pp2',{}));
+let DONE=store.get('makan_tasks2',[]);
+const F={name:'#f-name',type:'#f-type',nat:'#f-nat',asset:'#f-asset',city:'#f-city',stage:'#f-stage',budget:'#f-budget',lang:'#f-lang'};
+const opts=(o,sel)=>Object.entries(o).map(([k,v])=>`<option value="${k}" ${k==sel?'selected':''}>${esc(tx(v))}</option>`).join('');
+function fillSelects(){
+ $('#f-type').innerHTML=opts(TYPES,PP.type);$('#f-asset').innerHTML=opts(ASSETS,PP.asset);$('#f-lang').innerHTML=opts(LANGS,PP.lang);
+ $('#f-city').innerHTML=CITIES.map(c=>`<option value="${c.k}" ${c.k===PP.city?'selected':''}>${tx(c)}</option>`).join('');
+ $('#f-stage').innerHTML=STAGES.map((s,i)=>`<option value="${i}" ${i==PP.stage?'selected':''}>${tx(s)}</option>`).join('');
+ const cv=$('#s-cat').value||'all',cc=$('#s-city').value||'all';
+ $('#s-cat').innerHTML=`<option value="all">${t('all_cats')}</option>`+opts(CATS,cv);$('#s-cat').value=cv;
+ $('#s-city').innerHTML=`<option value="all">${t('all_cities')}</option>`+CITIES.map(c=>`<option value="${c.k}">${tx(c)}</option>`).join('');$('#s-city').value=cc;}
+function loadForm(){for(const k in F)$(F[k]).value=PP[k]??''}
+function ppId(){let h=7;for(const ch of (PP.name||'MAKAN')+PP.city)h=(h*31+ch.charCodeAt(0))%9000000;return 'MK'+String(1000000+h).slice(0,7)}
+function ppSummary(){return `${PP.name?PP.name+' · ':''}${tx(TYPES[PP.type])} · ${tx(ASSETS[PP.asset])} · ${tx(CITY(PP.city))} · ${tx(STAGES[PP.stage])}`}
+function drawCard(){
+ const nm=PP.name||(L==='en'?'Investor name':'اسم المستثمر');const lat=(PP.name||'INVESTOR').toUpperCase().replace(/[^A-Z0-9]+/g,'<').slice(0,24)||'INVESTOR';
+ const mrz1=('P<MKN<'+lat+'<'.repeat(44)).slice(0,44),mrz2=(ppId()+'<'+(PP.budget?String(PP.budget).slice(0,9):'000000000')+'<SAU<'+'<'.repeat(44)).slice(0,44);
+ let pat='';for(let i=0;i<14;i++)pat+=`<path d="M${i*44} 0l22 22-22 22-22-22z" fill="none" stroke="#d6ad62" stroke-width="1"/>`;
+ const kv=(k,v,st='')=>`<div><div class="k">${k}</div><div class="v" ${st}>${v}</div></div>`;const en=L==='en';
+ $('#ppCard').innerHTML=`<svg class="pat" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice">${[0,1,2,3,4,5,6,7,8,9].map(r=>`<g transform="translate(${r%2?22:0},${r*44})">${pat}</g>`).join('')}</svg>
+ <div class="row1"><div><div class="ttl">${en?'Investor Passport':'جواز المستثمر'}</div><div class="k" style="font-family:Inter;letter-spacing:.14em">${en?'جواز المستثمر · MAKAN':'INVESTOR PASSPORT · MAKAN'}</div></div><svg width="54" height="54" viewBox="0 0 40 40"><path d="M4 38V16l4-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5v22z" fill="#c9a05a"/><path d="M14 38V26a6 6 0 0 1 12 0v12z" fill="#0a3a30"/></svg></div>
+ <div style="position:relative;margin-top:14px"><div class="k">${en?'Name':'الاسم'}</div><div class="v" style="font-size:clamp(16px,2.2vw,21px);font-family:'Reem Kufi'">${esc(nm)}</div></div>
+ <div class="grid">${kv(en?'Type':'الصفة',esc(tx(TYPES[PP.type])))}${kv(en?'Passport no.':'رقم الجواز',ppId(),'style="direction:ltr;text-align:start;unicode-bidi:isolate"')}${kv(en?'Asset · City':'الأصل · المدينة',esc(tx(ASSETS[PP.asset])+' · '+tx(CITY(PP.city))))}${kv(en?'Stage':'المرحلة',esc(tx(STAGES[PP.stage])))}${kv(en?'Approx. value':'القيمة التقريبية',PP.budget?fmt(PP.budget)+' '+t('sar'):'—')}${kv(en?'Language':'اللغة',esc(tx(LANGS[PP.lang])))}</div>
+ <div class="mrz">${esc(mrz1)}<br>${esc(mrz2)}</div>`;
+ $('#ppMini').innerHTML=PP.name?`${t('ai_pp_yes')} <b>${esc(ppSummary())}</b>`:t('ai_pp_no');
+ $('#ppSaveInfo').textContent=cloud?t('save_cloud'):t('save_local');}
+for(const k in F)$(F[k]).addEventListener('input',e=>{PP[k]=k==='stage'?+e.target.value:e.target.value;drawCard()});
+async function savePP(silent){store.set('makan_pp2',PP);store.set('makan_tasks2',DONE);
+ if(cloud&&sb&&UID){try{must(await sb.from('passports').upsert({user_id:UID,pp:PP,tasks:DONE,updated_at:new Date().toISOString()}));if(!silent)toast(t('saved_cloud'));return}catch(e){cloud=false;drawCard();renderAccount()}}
+ if(!silent)toast(t('saved_local'))}
+$('#ppForm').addEventListener('submit',e=>{e.preventDefault();savePP();renderRoutes();renderStages();$('#c-val').value=PP.budget||$('#c-val').value;calc()});
+$('#ppReset').addEventListener('click',()=>{PP=Object.assign({},DEF);loadForm();drawCard();renderRoutes();renderStages();savePP(true)});
+
+/* ---------- home ---------- */
+function renderHome(){$('#svc').innerHTML=SVCS.map(s=>`<a href="${s[3]}" class="${s[4]?'hub':''}">${IC[s[0]]}<h3>${li(s[1])}</h3><p class="mut">${li(s[2])}</p><span class="go">${s[4]?t('start_here'):t('open')}</span></a>`).join('')}
+(function(){
+ let seed=11;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+ let st='';for(let i=0;i<90;i++){const x=rnd()*1440,y=rnd()*300,r=rnd()*1.4+.4;st+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(1)}" fill="#fff" opacity="${(.3+rnd()*.6).toFixed(2)}" ${i%9?'':'style="animation:tw 4s '+(i/9)+'s infinite"'}/>`}
+ let far='';for(let x=-20;x<1460;x+=34+rnd()*30){const h=60+rnd()*120,w=24+rnd()*30;far+=`<rect x="${x.toFixed(0)}" y="${(560-h).toFixed(0)}" width="${w.toFixed(0)}" height="${h.toFixed(0)}" fill="#0e4a3c"/>`}
+ let near='',win='';for(let x=-10;x<1460;x+=70+rnd()*60){if(x>340&&x<700)continue;const h=x>780?50+rnd()*70:90+rnd()*170,w=40+rnd()*40;near+=`<rect x="${x.toFixed(0)}" y="${(575-h).toFixed(0)}" width="${w.toFixed(0)}" height="${h.toFixed(0)}" fill="#073127"/><rect x="${x.toFixed(0)}" y="${(575-h).toFixed(0)}" width="3" height="${h.toFixed(0)}" fill="#1b6a55"/>`;
+  for(let wy=575-h+14;wy<560;wy+=16)for(let wx=x+8;wx<x+w-6;wx+=11)if(rnd()<.28)win+=`<rect x="${wx.toFixed(0)}" y="${wy.toFixed(0)}" width="4" height="6" fill="#e9c47c" opacity="${(.4+rnd()*.5).toFixed(2)}"/>`}
+ let cren='',vents='';for(let x=0;x<1440;x+=36){cren+=`<path d="M${x} 586l18-20 18 20z" fill="#5a3d1f"/><path d="M${x} 586l18-20 0 20z" fill="#6f4d28"/>`;if(x%144===0)vents+=`<path d="M${x+60} 616l8-12 8 12z" fill="#2c1d0e"/><path d="M${x+82} 616l8-12 8 12z" fill="#2c1d0e"/>`}
+ const palm=(x,s)=>`<g transform="translate(${x} 586) scale(${s})" fill="#04241c"><path d="M-3 0q-2-60 6-110h4q-6 50-2 110z"/>${[-60,-25,10,40,75,110,150].map(a=>`<path d="M5-110q40-${20+(Math.abs(a)%30)} 70 10q-35-20-70-6z" transform="rotate(${a} 5 -110)"/>`).join('')}</g>`;
+ $('#scene').innerHTML=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05251d"/><stop offset=".55" stop-color="#0b4536"/><stop offset=".85" stop-color="#7c6a3c"/><stop offset="1" stop-color="#d1a35a"/></linearGradient><radialGradient id="sun"><stop offset="0" stop-color="#ffd98f"/><stop offset=".4" stop-color="#e6b265" stop-opacity=".55"/><stop offset="1" stop-color="#e6b265" stop-opacity="0"/></radialGradient><linearGradient id="tw" x1="0" x2="1"><stop offset="0" stop-color="#0a3a2f"/><stop offset=".5" stop-color="#145c4a"/><stop offset="1" stop-color="#062b22"/></linearGradient></defs>
+ <rect width="1440" height="640" fill="url(#sky)"/>${st}<circle cx="200" cy="520" r="210" fill="url(#sun)"/><circle cx="200" cy="520" r="54" fill="#f1cf8a" opacity=".85"/><path d="M0 540q200-40 420-10t460-6 560 10v120H0z" fill="#3a4a2f" opacity=".45"/>${far}
+ <g transform="translate(-180 0)"><path fill="url(#tw)" fill-rule="evenodd" d="M570 580L590 230L607 108L614 108L620 196L626 108L633 108L650 230L670 580Z M597 270Q620 150 643 270Z"/><rect x="598" y="203" width="44" height="6" fill="#f0c674"/><path d="M570 580L590 230L607 108L610 108L596 270L585 580Z" fill="#1d7560" opacity=".6"/></g>
+ <g transform="translate(-230 0)"><path d="M822 580L856 150L864 150L898 580Z" fill="url(#tw)"/><path d="M822 580L856 150L859 150L842 580Z" fill="#1d7560" opacity=".6"/><line x1="860" y1="150" x2="860" y2="78" stroke="#c9a05a" stroke-width="3"/><circle cx="860" cy="262" r="19" fill="#f0c674"/><circle cx="860" cy="262" r="34" fill="#f0c674" opacity=".18"/></g>
+ ${near}${win}${palm(740,1.05)}${palm(800,.8)}${palm(90,.95)}<rect x="0" y="586" width="1440" height="60" fill="#4a3219"/><rect x="0" y="586" width="1440" height="4" fill="#8a6234"/>${cren}${vents}`;
+})();
+
+/* ---------- journey ---------- */
+function renderRoutes(){const cur=+PP.stage||0;const h=STAGES.map((s,i)=>`<div class="stn ${i<cur?'done':i===cur?'cur':''}"><div class="dot">${i+1}</div><h3>${tx(s)}</h3><p>${L==='en'?s.den:s.dar}</p></div>`).join('');$('#routeHome').innerHTML=h;$('#routeJ').innerHTML=h}
+function renderStages(){const cur=+PP.stage||0;let all=0;
+ $('#stages').innerHTML=STAGES.map((s,i)=>`<div class="stage ${i===cur?'cur':''}"><div class="n">${i+1}</div><div><h3>${tx(s)} ${i===cur?`<span class="tag warn">${t('jr_cur')}</span>`:''}</h3><p class="mut" style="margin:4px 0 8px">${t('jr_svcs')} ${s.cats.map(c=>`<a href="#experts" data-cat="${c}" class="tag">${tx(CATS[c])}</a>`).join('')}</p>${s.t.map((x,j)=>{const id=i+'-'+j;all++;return `<label class="task"><input type="checkbox" data-t="${id}" ${DONE.includes(id)?'checked':''}><span>${li(x)}</span></label>`}).join('')}</div></div>`).join('');
+ $('#jProg').style.width=(DONE.length/all*100)+'%';$('#jCount').textContent=`${DONE.length} ${t('jr_of')} ${all} ${t('jr_done')}`}
+$('#stages').addEventListener('change',e=>{const id=e.target.dataset.t;if(!id)return;DONE=e.target.checked?[...new Set([...DONE,id])]:DONE.filter(x=>x!==id);renderStages();savePP(true)});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-cat]');if(a){$('#s-cat').value=a.dataset.cat;$('#s-city').value='all';renderProv()}});
+
+/* ---------- providers ---------- */
+function findProv(cat,city,q){q=(q||'').trim().toLowerCase();return PROVS.filter(p=>(!cat||cat==='all'||p.cat===cat)&&(!city||city==='all'||p.city===city)&&(!q||[p.nameAr,p.nameEn,p.langs,...(p.svcAr||[]),...(p.svcEn||[]),tx(CATS[p.cat]),tx(CITY(p.city))].join(' ').toLowerCase().includes(q)))}
+const mono=p=>esc((pName(p).replace(/^(دار|مكتب|مجموعة|بيت|بوابة|شركة)\s/,'').replace(/^ال/,'')||'?').charAt(0));
+const vtag=p=>p.verified?`<span class="tag ok">${t('verified')}</span>`:`<span class="tag warn">${t('unverified')}</span>`;
+function renderProv(){
+ if(provMode==='loading'){$('#plist').innerHTML=`<div class="panel" style="grid-column:1/-1"><p class="mut">${t('loading')}</p></div>`;$('#pCount').textContent='';return}
+ const Lst=findProv($('#s-cat').value,$('#s-city').value,$('#s-q').value);
+ $('#pCount').textContent=Lst.length?`${Lst.length} ${t('n_found')}`:'';
+ $('#pNote').textContent=provMode==='demo'?t('p_note_demo'):t('p_note_db');
+ $('#plist').innerHTML=Lst.length?Lst.map(p=>`<article class="pc"><div class="hd"><div class="mono">${mono(p)}</div><div><h3 style="font-size:18px">${esc(pName(p))}</h3><span class="mut" style="font-size:14px">${esc(tx(CITY(p.city)))} · ${esc(tx(CATS[p.cat]))}</span></div></div><p class="mut" style="font-size:15px">${esc(pSvc(p).join(L==='en'?', ':'، '))}</p><div>${p.langs?`<span class="tag">${esc(p.langs)}</span>`:''}${vtag(p)}</div><div class="acts"><button class="btn line sm" data-prof="${esc(p.id)}">${t('profile')}</button><button class="btn em sm" data-req="${esc(p.id)}">${t('contact')}</button></div></article>`).join('')
+ :`<div class="panel" style="grid-column:1/-1;text-align:center"><h3>${PROVS.length?t('none_h'):t('empty_h')}</h3><p class="mut">${PROVS.length?t('none_p'):t('empty_p')}</p></div>`}
+['#s-q','#s-cat','#s-city'].forEach(s=>$(s).addEventListener('input',renderProv));
+const dlg=$('#dlg');
+function openProf(id,req){const p=PROVS.find(x=>x.id==id);if(!p)return;
+ const msg=PP.name?(L==='en'?`${tx(TYPES[PP.type])} looking for ${tx(CATS[p.cat])} for ${tx(ASSETS[PP.asset])} in ${tx(CITY(PP.city))} (stage: ${tx(STAGES[PP.stage])}).`:`${tx(TYPES[PP.type])} يبحث عن ${tx(CATS[p.cat])} لـ${tx(ASSETS[PP.asset])} في ${tx(CITY(PP.city))} (مرحلة: ${tx(STAGES[PP.stage])}).`):'';
+ dlg.innerHTML=`<div class="dlg-h"><div class="mono" style="background:#ffffff14">${mono(p)}</div><div><h3>${esc(pName(p))}</h3><span style="color:#b9cbc3;font-size:14px">${esc(tx(CITY(p.city)))} · ${esc(tx(CATS[p.cat]))}</span></div><button class="x" data-close aria-label="close">×</button></div>
+ <div class="dlg-b">${req?'':`<div><b>${t('d_svcs')}</b><ul style="margin:6px 0;padding-inline-start:20px">${pSvc(p).map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div><div class="fgrid"><div><b>${t('d_langs')}</b><p class="mut">${esc(p.langs||'—')}</p></div><div><b>${t('d_resp')}</b><p class="mut">${esc(tx(RESP[p.resp])||'—')}</p></div></div><div>${vtag(p)}</div><p class="note" style="margin:0">${t('d_note')}</p>`}
+ <form id="reqForm" style="display:grid;gap:12px"><b>${t('d_req')}</b><div class="field"><label for="r-msg">${t('d_msg')}</label><textarea id="r-msg" rows="3">${esc(msg)}</textarea></div><button class="btn gold" type="submit">${t('d_send')}</button></form></div>`;
+ dlg.showModal()}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-prof]'),b=e.target.closest('[data-req]');if(a)openProf(a.dataset.prof,0);if(b)openProf(b.dataset.req,1);if(e.target.closest('[data-close]')||e.target===dlg)dlg.close()});
+dlg.addEventListener('submit',e=>{e.preventDefault();dlg.close();toast(t('d_sent'))});
+
+/* ---------- map ---------- */
+const BORDER=[[34.95,29.36],[36.07,29.2],[36.5,29.5],[37.67,30.34],[37.98,30.5],[37.0,31.5],[39.0,32.0],[40.4,31.9],[42.0,31.1],[44.7,29.2],[46.55,29.1],[47.46,29.0],[48.42,28.55],[48.8,27.7],[49.3,27.2],[50.1,26.7],[50.2,26.2],[50.0,25.8],[50.2,25.5],[50.5,25.0],[50.8,24.75],[51.6,24.25],[52.6,22.95],[55.2,22.7],[55.67,22.0],[55.0,20.0],[52.0,19.0],[49.1,18.6],[48.2,18.17],[47.0,16.95],[46.2,17.25],[45.4,17.33],[44.1,17.4],[43.3,17.5],[42.8,16.4],[42.6,16.8],[42.3,17.5],[41.2,18.9],[40.6,19.8],[39.6,20.9],[39.1,21.7],[39.0,22.6],[38.5,23.6],[37.6,24.3],[37.2,24.9],[36.6,25.8],[36.2,26.6],[35.6,27.4],[35.1,28.1],[34.6,28.1],[34.8,28.6]];
+let selCity=PP.city;const msvg=$('#mapSvg');
+function drawMap(){const W=msvg.clientWidth,H=msvg.clientHeight;if(!W)return;const pad=34,x0=34.3,x1=56,y0=16,y1=32.4;const k=Math.min((W-2*pad)/(x1-x0),(H-2*pad)/((y1-y0)*1.08));const ox=(W-(x1-x0)*k)/2,oy=(H-(y1-y0)*1.08*k)/2;
+ const P=(lon,lat)=>[ox+(lon-x0)*k,oy+(y1-lat)*1.08*k];
+ const d='M'+BORDER.map(b=>P(...b).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
+ let dots='';let s=5;const rr=()=>(s=s*16807%2147483647)/2147483647;for(let i=0;i<160;i++){const [x,y]=P(x0+rr()*(x1-x0),y0+rr()*(y1-y0));dots+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.4" fill="var(--gold)" opacity=".35"/>`}
+ const pins=CITIES.map(c=>{const n=PROVS.filter(p=>p.city===c.k).length;const [x,y]=P(c.lon,c.lat);const on=c.k===selCity;const r=10+Math.min(n,6)*3;const lx=x+c.lab[0]*(r+6),anc=c.lab[0]>0?'start':'end',ly=y+c.lab[1];
+  return `<g class="pin" data-city="${c.k}" tabindex="0" role="button" aria-label="${tx(c)}"><circle cx="${x}" cy="${y}" r="${r+8}" fill="var(--gold)" opacity="${on?.25:0}"/><circle cx="${x}" cy="${y}" r="${r}" fill="${on?'var(--gold)':'var(--em2)'}" stroke="var(--card)" stroke-width="3"/><text x="${x}" y="${y+5}" text-anchor="middle" fill="#fff" stroke="none" font-size="14">${n}</text><text x="${lx}" y="${ly}" text-anchor="${anc}" fill="var(--ink)" font-size="${W<520?13:15}">${tx(c)}</text></g>`}).join('');
+ msvg.setAttribute('aria-label',t('map_h'));
+ msvg.innerHTML=`<defs><clipPath id="ksa"><path d="${d}"/></clipPath><linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="color-mix(in srgb,var(--em2) 22%,var(--card))"/><stop offset="1" stop-color="color-mix(in srgb,var(--gold) 22%,var(--card))"/></linearGradient></defs><path d="${d}" fill="url(#land)" stroke="var(--em2)" stroke-width="2" stroke-linejoin="round"/><g clip-path="url(#ksa)">${dots}</g>${pins}`}
+const mro=new ResizeObserver(drawMap);mro.observe(msvg);
+function cityPanel(){const c=CITY(selCity)||CITIES[0];const Lst=PROVS.filter(p=>p.city===c.k);$('#cityPanel').innerHTML=`<span class="mut">${t('map_sel')}</span><h2 style="margin:4px 0 6px">${tx(c)}</h2><p class="mut">${Lst.length} ${t('map_n')}</p><div class="clist">${Lst.map(p=>`<div class="crow"><div><b>${esc(pName(p))}</b><div class="mut" style="font-size:14px">${esc(tx(CATS[p.cat]))}</div></div><button class="btn line sm" data-prof="${esc(p.id)}">${t('profile')}</button></div>`).join('')||`<p class="mut">${t('map_none')}</p>`}</div><button class="btn em" style="margin-top:16px" id="toCity">${t('map_all')}</button>`;
+ $('#toCity').onclick=()=>{$('#s-city').value=c.k;$('#s-cat').value='all';renderProv();location.hash='experts'}}
+const pickCity=g=>{selCity=g.dataset.city;drawMap();cityPanel()};
+msvg.addEventListener('click',e=>{const g=e.target.closest('.pin');if(g)pickCity(g)});
+msvg.addEventListener('keydown',e=>{const g=e.target.closest('.pin');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pickCity(g)}});
+
+/* ---------- costs ---------- */
+let SEL=new Set(['legal','val','eng']),CX=1.35,lastSum='';
+function renderOpts(){$('#optList').innerHTML=COSTS.map(c=>`<label class="opt"><input type="checkbox" data-k="${c.k}" ${SEL.has(c.k)?'checked':''}><span>${tx(c)}</span><span class="rng">${fmt(c.lo)}–${fmt(c.hi)} ${t('sar')}</span></label>`).join('')}
+$('#optList').addEventListener('change',e=>{const k=e.target.dataset.k;e.target.checked?SEL.add(k):SEL.delete(k);calc()});
+$('#cx').addEventListener('click',e=>{const b=e.target.closest('button');if(b){CX=+b.dataset.f;calc()}});
+$('#c-val').value=PP.budget||20000000;$('#c-val').addEventListener('input',calc);
+function costRange(keys,cx,val){const sz=val>100e6?1.6:val>30e6?1.3:val>5e6?1.1:1;const rows=COSTS.filter(c=>keys.includes(c.k)).map(c=>({n:tx(c),lo:c.lo*cx*sz,hi:c.hi*cx*sz}));return{rows,lo:rows.reduce((a,b)=>a+b.lo,0),hi:rows.reduce((a,b)=>a+b.hi,0)}}
+function calc(){$$('#cx button').forEach(b=>b.classList.toggle('on',+b.dataset.f===CX));const val=+$('#c-val').value||0;const R=costRange([...SEL],CX,val);
+ $('#cTotal').textContent=R.rows.length?`${fmt(R.lo/1000)}–${fmt(R.hi/1000)} ${t('c_k')}`:t('c_pick');
+ $('#cShare').textContent=val&&R.rows.length?t('c_share').replace('{a}',(R.lo/val*100).toFixed(2)).replace('{b}',(R.hi/val*100).toFixed(2)):'';
+ const mx=Math.max(1,...R.rows.map(r=>r.hi));
+ $('#cBars').innerHTML=R.rows.map(r=>`<div class="bar"><div class="lb"><span>${r.n}</span><span>${fmt(r.lo)}–${fmt(r.hi)} ${t('sar')}</span></div><div class="tr"><div class="fl" style="inset-inline-start:${r.lo/mx*100}%;width:${(r.hi-r.lo)/mx*100}%"></div><div class="fl" style="inset-inline-start:0;width:${r.lo/mx*100}%;opacity:.25"></div></div></div>`).join('');
+ lastSum=`MAKAN — ${t('cost_h')}\n${R.rows.map(r=>`- ${r.n}: ${fmt(r.lo)}–${fmt(r.hi)} ${t('sar')}`).join('\n')}\n= ${fmt(R.lo)}–${fmt(R.hi)} ${t('sar')}`}
+$('#cCopy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(lastSum);toast(t('copied'))}catch(e){toast(t('copy_fail'))}});
+
+/* ---------- AI assistant ---------- */
+let HIST=[],busy=false,ctrl=null;const msgs=$('#msgs');
+const QS={ar:[['g_elig',['هل أستطيع كمستثمر أجنبي تملك عقار تجاري في الرياض؟ وما الذي أتحقق منه أولًا؟','ما المستندات التي أجهزها قبل التواصل مع محامٍ؟']],['g_inv',['رتّب لي خطة من خمس خطوات بناءً على جوازي','ما الذي يفحصه صندوق أجنبي قبل شراء مبنى مكاتب في الرياض؟']],['g_svc',['رشّح لي مزودين مناسبين لمدينتي','كم تقريبًا تكلفة الفحص القانوني والتقييم والفحص الهندسي؟']]],
+ en:[['g_elig',['Can a foreign investor own commercial property in Riyadh? What should I check first?','Which documents should I prepare before speaking to a lawyer?']],['g_inv',['Build me a five-step plan based on my passport','What should a foreign fund check before buying an office building in Riyadh?']],['g_svc',['Suggest providers for my city','Roughly what do legal review, valuation and inspection cost?']]]};
+function md(s){const Ls=esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').split('\n');let h='',inl=false;for(const l of Ls){const m=l.match(/^\s*(?:[-•*]|\d+[.)])\s+(.*)/);if(m){if(!inl){h+='<ul>';inl=true}h+=`<li>${m[1]}</li>`}else{if(inl){h+='</ul>';inl=false}if(l.trim())h+=`<p>${l.replace(/^#+\s*/,'')}</p>`}}return h+(inl?'</ul>':'')}
+function bubble(cls,html){const d=document.createElement('div');d.className='m '+cls;d.innerHTML=html;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function hello(){msgs.innerHTML='';HIST=[];bubble('bot',md(t('ai_hello')))}
+function renderSuggest(){$('#suggest').innerHTML=QS[L].map(g=>`<div class="grp"><b>${t(g[0])}</b><div class="chips">${g[1].map(q=>`<button type="button" class="chip">${esc(q)}</button>`).join('')}</div></div>`).join('')}
+$('#suggest').addEventListener('click',e=>{const c=e.target.closest('.chip');if(c){$('#q').value=c.textContent;ask()}});
+$('#clearChat').addEventListener('click',()=>{if(ctrl)ctrl.abort();hello()});
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask()}});
+$('#q').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=Math.min(140,e.target.scrollHeight)+'px'});
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault();ask()});
+function setStatus(){const s=$('#aiStatus');s.classList.toggle('live',!!sample);s.lastElementChild.textContent=sample===undefined?t('ai_init'):sample?t('ai_live'):t('ai_off')}
+const SYS=()=>`You are "MAKAN Assistant", an advisory assistant inside MAKAN, a platform that connects investors in Saudi real estate (especially foreign investors) with professional service providers.
+Rules:
+- Reply in the language of the user's message (Arabic or English). The site is currently shown in ${L==='en'?'English':'Arabic'}.
+- Be concise and polished: one opening sentence, then bullet points starting with "- ". Use **bold** sparingly. No tables, no # headings.
+- Your areas: initial eligibility, the investment path (stations: ${STAGES.map(s=>s.en).join(', ')}), services and experts, indicative costs.
+- Never give final legal or financial advice and never state specific regulations, fees or percentages as fact. For eligibility and rules, list what to verify and point to the Real Estate General Authority, official bodies and a licensed lawyer.
+- To suggest providers use the find_providers tool only and never invent names; say profiles marked unverified have not had their licence reviewed. For costs use estimate_costs and say the figures are illustrative.
+- End with one next step inside MAKAN (Investor passport, Providers, Cost library, Journey, Kingdom map).
+City keys: ${CITIES.map(c=>c.k+'='+c.en).join(', ')}. Category keys: ${Object.entries(CATS).map(([k,v])=>k+'='+v.en).join(', ')}.
+Investor passport: ${PP.name||PP.nat?JSON.stringify({name:PP.name,type:TYPES[PP.type].en,nationality:PP.nat,asset:ASSETS[PP.asset].en,city:CITY(PP.city).en,stage:STAGES[PP.stage].en,value_sar:PP.budget,language:LANGS[PP.lang].en}):'not filled in yet; ask for investor type, city and asset if needed.'}`;
+const TOOLS=[
+ {name:'find_providers',description:'Search the MAKAN provider directory. category: legal|eng|val|adv|pm|all. city: riyadh|jeddah|dammam|makkah|madinah|all.',inputSchema:{type:'object',properties:{category:{type:'string'},city:{type:'string'}}},execute:({category,city})=>findProv(category,city).slice(0,12).map(p=>({name_ar:p.nameAr,name_en:p.nameEn,category:CATS[p.cat]?.en,city:CITY(p.city)?.en,services:pSvc(p),languages:p.langs,licence_reviewed:!!p.verified}))},
+ {name:'estimate_costs',description:'Illustrative cost range in SAR. services: array of legal|val|eng|adv|pm. complexity: 1, 1.35 or 1.8. asset_value in SAR.',inputSchema:{type:'object',properties:{services:{type:'array',items:{type:'string'}},complexity:{type:'number'},asset_value:{type:'number'}},required:['services']},execute:({services,complexity,asset_value})=>{const R=costRange(services||[],complexity||1.35,asset_value||+PP.budget||0);return{illustrative:true,rows:R.rows.map(r=>({service:r.n,low:Math.round(r.lo),high:Math.round(r.hi)})),total_low:Math.round(R.lo),total_high:Math.round(R.hi)}}}];
+function offline(q){const en=!/[؀-ۿ]/.test(q);
+ if(/أهلية|تملك|نظام|قانون|eligib|own|law/i.test(q))return en?'To check initial eligibility we need **your investor type and nationality**, **the property type and location**, and **the intended use**.\n- Check with the Real Estate General Authority and official bodies\n- Speak to a licensed lawyer before committing\nNext step: fill in your investor passport.':'للتحقق من الأهلية الأولية نحتاج: **صفتك وجنسيتك**، **نوع العقار وموقعه**، و**طبيعة الاستخدام**.\n- راجع الهيئة العامة للعقار والجهات الرسمية\n- استشر محاميًا مرخّصًا قبل أي التزام\nالخطوة التالية: عبّئ جواز المستثمر.';
+ if(/تكلف|تكاليف|رسوم|سعر|cost|fee|price/i.test(q)){const R=costRange(['legal','val','eng'],1.35,+PP.budget||0);return en?`Illustrative range for legal review, valuation and inspection: **${fmt(R.lo)}–${fmt(R.hi)} SAR**.\nNext step: adjust it in the cost library.`:`تقدير افتراضي للفحص القانوني والتقييم والفحص الهندسي: **${fmt(R.lo)}–${fmt(R.hi)} ر.س**.\nالخطوة التالية: عدّل الخيارات في مكتبة التكاليف.`}
+ if(/مزود|محام|هندس|مقيّم|خبير|رشّح|provider|lawyer|suggest/i.test(q)){const Lst=findProv('all',PP.city);return (en?`From the directory in ${CITY(PP.city).en}:\n`:`من دليل المنصة في ${CITY(PP.city).ar}:\n`)+(Lst.map(p=>`- **${en?(p.nameEn||p.nameAr):(p.nameAr||p.nameEn)}** — ${en?CATS[p.cat].en:CATS[p.cat].ar}`).join('\n')||'—')}
+ return en?'Let us build a first path: what kind of investor are you, and which asset, city and stage? Fill in the investor passport and I will use it.':'لنبنِ مسارًا أوليًا: ما صفتك كمستثمر، وما نوع العقار والمدينة والمرحلة؟ عبّئ جواز المستثمر وسأستخدمه في إجاباتي.'}
+async function ask(){const q=$('#q').value.trim();if(!q||busy)return;$('#q').value='';$('#q').style.height='auto';bubble('me',esc(q));
+ const b=bubble('bot',`<span class="mut">${t('ai_thinking')}</span>`);busy=true;$('#sendBtn').disabled=true;
+ const done=()=>{busy=false;$('#sendBtn').disabled=false;msgs.scrollTop=msgs.scrollHeight};
+ if(!sample||!SESSION){const a=offline(q);b.innerHTML=md(a)+`<p class="mut" style="font-size:13px;margin-top:8px">${sb?t('ai_limited'):''}</p>`;HIST.push({role:'user',content:q},{role:'assistant',content:a});return done()}
+ ctrl=new AbortController();
+ const context={site_language:L==='en'?'English':'Arabic',passport:PP.name||PP.nat?{name:PP.name,type:TYPES[PP.type].en,nationality:PP.nat,asset:ASSETS[PP.asset].en,city:CITY(PP.city).en,stage:STAGES[PP.stage].en,value_sar:PP.budget,language:LANGS[PP.lang].en}:null,
+  stations:STAGES.map(s=>s.en),providers:PROVS.slice(0,80).map(p=>({name_ar:p.nameAr,name_en:p.nameEn,category:CATS[p.cat].en,city:CITY(p.city).en,services:p.svcEn.length?p.svcEn:p.svcAr,languages:p.langs,licence_reviewed:!!p.verified})),
+  illustrative_costs_sar:COSTS.map(c=>({service:c.en,low:c.lo,high:c.hi})),complexity_multipliers:{simple:1,moderate:1.35,complex:1.8}};
+ try{const r=await fetch('/api/chat',{method:'POST',signal:ctrl.signal,headers:{'content-type':'application/json',authorization:'Bearer '+SESSION.access_token},body:JSON.stringify({messages:[...HIST.slice(-10),{role:'user',content:q}],context})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){b.innerHTML=`<p>${r.status===429?t('err_rate'):t('err_gen')}</p>`;return done()}
+  b.innerHTML=md(j.text||'');HIST.push({role:'user',content:q},{role:'assistant',content:j.text||''})}
+ catch(e){if(e&&e.name==='AbortError')b.remove();else b.innerHTML=`<p>${t('err_gen')}</p>`}
+ done()}
+
+/* ---------- join ---------- */
+const PFIELDS=(pre)=>`<div class="fgrid"><div class="field"><label for="${pre}-nameAr">${t('a_nameAr')}</label><input id="${pre}-nameAr"></div><div class="field"><label for="${pre}-nameEn">${t('a_nameEn')}</label><input id="${pre}-nameEn" dir="ltr"></div>
+<div class="field"><label for="${pre}-cat">${t('a_cat')}</label><select id="${pre}-cat">${opts(CATS)}</select></div><div class="field"><label for="${pre}-city">${t('a_city')}</label><select id="${pre}-city">${CITIES.map(c=>`<option value="${c.k}">${tx(c)}</option>`).join('')}</select></div>
+<div class="field"><label for="${pre}-langs">${t('a_langs')}</label><input id="${pre}-langs" placeholder="العربية, English"></div><div class="field"><label for="${pre}-resp">${t('a_resp')}</label><select id="${pre}-resp">${opts(RESP)}</select></div>
+<div class="field"><label for="${pre}-svcAr">${t('a_svcAr')}</label><textarea id="${pre}-svcAr" rows="3"></textarea></div><div class="field"><label for="${pre}-svcEn">${t('a_svcEn')}</label><textarea id="${pre}-svcEn" rows="3" dir="ltr"></textarea></div></div>`;
+const lines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean).slice(0,12);
+function readP(pre){const g=k=>$(`#${pre}-${k}`).value.trim();return{nameAr:g('nameAr').slice(0,120),nameEn:g('nameEn').slice(0,120),cat:g('cat'),city:g('city'),langs:g('langs').slice(0,120),resp:g('resp'),svcAr:lines(g('svcAr')),svcEn:lines(g('svcEn'))}}
+function writeP(pre,p){const s=(k,v)=>{const el=$(`#${pre}-${k}`);if(el)el.value=v??''};s('nameAr',p.nameAr);s('nameEn',p.nameEn);s('cat',p.cat||'legal');s('city',p.city||'riyadh');s('langs',p.langs);s('resp',p.resp||'d1');s('svcAr',(p.svcAr||[]).join('\n'));s('svcEn',(p.svcEn||[]).join('\n'))}
+let MYAPP=null;
+function renderJoin(){const keep=$('#j-nameAr')?readP('j'):null;$('#joinFields').innerHTML=PFIELDS('j');if(keep)writeP('j',keep);
+ const ok=!!(sb&&UID);$('#joinBtn').disabled=!ok;$('#joinInfo').textContent=ok?'':t('j_need_in');
+ const st=MYAPP?.status;$('#joinStatus').innerHTML=`<h3>${t('j_status_h')}</h3><p style="margin-top:10px">${MYAPP?`<b>${esc(L==='en'?(MYAPP.nameEn||MYAPP.nameAr):(MYAPP.nameAr||MYAPP.nameEn))}</b><br><span class="tag ${st==='approved'?'ok':'warn'}">${t('st_'+(st||'pending'))}</span>`:`<span class="mut">${t('j_none')}</span>`}</p>`}
+$('#joinForm').addEventListener('submit',async e=>{e.preventDefault();if(!sb||!UID)return;const p=readP('j');if(!p.nameAr&&!p.nameEn){toast(t('adm_need'));return}
+ $('#joinBtn').disabled=true;try{must(await sb.from('applications').upsert({user_id:UID,...toRow(p),contact:$('#j-contact').value.trim().slice(0,120),status:'pending'}));await loadMyApp();toast(t('j_sent'))}catch(err){$('#joinInfo').textContent=t('j_cant')}$('#joinBtn').disabled=false});
+
+/* ---------- account ---------- */
+function renderAccount(){const a=$('#acct');
+ if(ME&&UID){a.classList.remove('out');a.innerHTML=`<img alt=""><span></span>`;a.querySelector('img').src=ME.avatarUrl;a.querySelector('span').textContent=ME.name||t('acc_in')}
+ else{a.classList.add('out');a.innerHTML=`<span>${t('signin')}</span>`}
+ const role=!ME?t('role_viewer'):ADMIN?t('role_admin'):t('role_member');const P=$('#accPanel');
+ if(ME&&UID){P.innerHTML=`<div class="who"><img alt=""><div><span class="mut">${t('acc_in')}</span><h2 id="accName"></h2><span class="mut" id="accMail" style="font-size:14px"></span></div></div><div class="facts"><div><b>${t('acc_role')}</b>${role}</div><div><b>${t('acc_data')}</b>${cloud?t('data_cloud'):t('data_local')}</div><div><b>${t('acc_ai')}</b>${sample?t('on'):t('off')}</div></div><div class="row">${ADMIN?`<a class="btn em" href="#admin">${t('acc_admin_btn')}</a>`:''}<a class="btn line" href="#passport">${t('nav_pass')}</a><button class="btn line" type="button" id="signOut">${t('signout')}</button></div>`;
+  P.querySelector('img').src=ME.avatarUrl;$('#accName').textContent=ME.name||t('acc_in');$('#accMail').textContent=ME.email||''}
+ else P.innerHTML=`<h2>${t('acc_out_h')}</h2><p class="mut" style="margin-top:10px">${t('acc_out_p')}</p><form id="siForm" class="field" style="margin-top:18px"><label for="si-email">${t('acc_email')}</label><input id="si-email" type="email" required autocomplete="email" dir="ltr" placeholder="name@example.com"><button class="btn gold" type="submit" style="margin-top:10px">${t('acc_send')}</button><p class="saveinfo" id="siInfo"></p></form>`;
+ $('#navAdmin').classList.toggle('hide',!ADMIN)}
+$('#accPanel').addEventListener('submit',async e=>{if(e.target.id!=='siForm')return;e.preventDefault();if(!sb)return;const btn=e.target.querySelector('button');btn.disabled=true;
+ const {error}=await sb.auth.signInWithOtp({email:$('#si-email').value.trim(),options:{emailRedirectTo:location.origin+location.pathname}});$('#siInfo').textContent=error?t('acc_err'):t('acc_sent');btn.disabled=false});
+$('#accPanel').addEventListener('click',async e=>{if(e.target.id==='signOut'&&sb){await sb.auth.signOut();afterAuth(null)}});
+
+/* ---------- admin ---------- */
+let EDIT=null,APPS=[];
+function renderAdmin(){$('#admWrap').classList.toggle('hide',!ADMIN);$('#admDenied').classList.toggle('hide',ADMIN);if(!ADMIN)return;
+ const keep=$('#adm-nameAr')?readP('adm'):null;const ver=$('#adm-ver')?$('#adm-ver').checked:false;
+ $('#admFields').innerHTML=PFIELDS('adm')+`<label class="task" style="margin-top:12px"><input type="checkbox" id="adm-ver"><span>${t('a_ver')}</span></label>`;if(keep)writeP('adm',keep);$('#adm-ver').checked=ver;
+ $('#admFormH').textContent=EDIT?t('adm_edit'):t('adm_add');$('#admSave').textContent=EDIT?t('adm_save_edit'):t('adm_save_new');$('#admCancel').classList.toggle('hide',!EDIT);
+ const list=provMode==='db'?PROVS:[];$('#admCount').textContent=list.length;
+ $('#admRows').innerHTML=list.map(p=>`<tr><td data-l="${t('th_name')}"><b>${esc(pName(p))}</b></td><td data-l="${t('th_cat')}">${esc(tx(CATS[p.cat]))}</td><td data-l="${t('th_city')}">${esc(tx(CITY(p.city)))}</td><td><div class="acts"><button class="btn line sm" data-edit="${esc(p.id)}">${t('edit')}</button><button class="btn danger sm" data-del="${esc(p.id)}">${t('del')}</button></div></td></tr>`).join('');
+ const pend=APPS.filter(a=>a.status==='pending');
+ $('#apps').innerHTML=pend.length?pend.map(a=>`<div class="app"><b>${esc(L==='en'?(a.nameEn||a.nameAr):(a.nameAr||a.nameEn))}</b><span class="mut" style="font-size:14px">${esc(tx(CATS[a.cat]))} · ${esc(tx(CITY(a.city)))} · ${esc(a.contact||'')}</span><span style="font-size:14px">${esc(((L==='en'?a.svcEn:a.svcAr)||[]).join(' · '))}</span><div class="acts" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn em sm" data-appr="${esc(a.id)}">${t('approve')}</button><button class="btn line sm" data-rej="${esc(a.id)}">${t('reject')}</button></div></div>`).join(''):`<p class="mut">${t('adm_noapps')}</p>`}
+$('#admForm').addEventListener('submit',async e=>{e.preventDefault();const p=readP('adm');if(!p.nameAr&&!p.nameEn){toast(t('adm_need'));return}const row={...toRow(p),verified:$('#adm-ver').checked};$('#admSave').disabled=true;
+ try{if(EDIT){must(await sb.from('providers').update(row).eq('id',EDIT));toast(t('adm_saved'))}else{must(await sb.from('providers').insert(row));toast(t('adm_added'))}EDIT=null;writeP('adm',{});$('#adm-ver').checked=false;await loadProviders()}catch(err){toast(t('adm_err'))}$('#admSave').disabled=false});
+$('#admCancel').addEventListener('click',()=>{EDIT=null;writeP('adm',{});renderAdmin()});
+document.addEventListener('click',async e=>{
+ const ed=e.target.closest('[data-edit]');if(ed){const p=PROVS.find(x=>x.id===ed.dataset.edit);if(p){EDIT=p.id;renderAdmin();writeP('adm',p);$('#adm-ver').checked=!!p.verified;$('#admForm').scrollIntoView({behavior:'smooth'})}}
+ const dl=e.target.closest('[data-del]');if(dl){if(!dl.classList.contains('arm')){dl.classList.add('arm');dl.textContent=t('del_sure');setTimeout(()=>{if(dl.isConnected){dl.classList.remove('arm');dl.textContent=t('del')}},4000);return}
+  try{must(await sb.from('providers').delete().eq('id',dl.dataset.del));toast(t('adm_deleted'));await loadProviders()}catch(err){toast(t('adm_err'))}}
+ const ap=e.target.closest('[data-appr]');if(ap){const a=APPS.find(x=>x.id===ap.dataset.appr);if(!a)return;ap.disabled=true;try{must(await sb.from('providers').insert({...toRow(a),verified:false}));must(await sb.from('applications').update({status:'approved'}).eq('user_id',a.id));toast(t('adm_approved'));await loadProviders();await loadApps()}catch(err){toast(t('adm_err'));ap.disabled=false}}
+ const rj=e.target.closest('[data-rej]');if(rj){try{must(await sb.from('applications').update({status:'rejected'}).eq('user_id',rj.dataset.rej));toast(t('adm_rejected'));await loadApps()}catch(err){toast(t('adm_err'))}}});
+
+/* ---------- language apply ---------- */
+function applyLang(){document.documentElement.lang=L;document.documentElement.dir=L==='en'?'ltr':'rtl';document.title=L==='en'?'MAKAN':'مكان MAKAN';
+ $$('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));$$('[data-tph]').forEach(el=>el.placeholder=t(el.dataset.tph));
+ fillSelects();loadForm();drawCard();renderHome();renderRoutes();renderStages();renderProv();renderOpts();calc();renderSuggest();setStatus();renderJoin();renderAccount();renderAdmin();cityPanel();drawMap();
+ if(!busy&&HIST.length===0)hello()}
+$('#langBtn').addEventListener('click',()=>{L=L==='en'?'ar':'en';store.set('makan_lang',L);applyLang()});
+
+/* ---------- router ---------- */
+const ROUTES=['home','passport','assistant','experts','map','costs','journey','join','account','admin'];
+function route(){let h=location.hash.slice(1);if(!ROUTES.includes(h))h='home';$$('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+h));$$('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+h));
+ if(h==='map'){requestAnimationFrame(drawMap);cityPanel()}window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+
+/* ---------- data access ---------- */
+async function loadProviders(){try{PROVS=must(await sb.from('providers').select('*').order('created_at',{ascending:true})).map(fromRow);provMode='db'}catch(e){PROVS=DEMO;provMode='demo'}renderProv();renderAdmin();drawMap();cityPanel()}
+async function loadApps(){if(!ADMIN)return;try{APPS=must(await sb.from('applications').select('*').eq('status','pending').order('created_at',{ascending:true})).map(fromRow)}catch(e){APPS=[]}renderAdmin()}
+async function loadMyApp(){if(!UID)return;try{const d=must(await sb.from('applications').select('*').eq('user_id',UID).maybeSingle());MYAPP=d?fromRow(d):null}catch(e){MYAPP=null}renderJoin()}
+async function afterAuth(session){SESSION=session||null;const u=SESSION?SESSION.user:null;UID=u?u.id:null;
+ ME=u?{id:u.id,email:u.email||'',name:(u.user_metadata&&u.user_metadata.full_name)||(u.email||'').split('@')[0],avatarUrl:avatar(u.email)}:null;
+ ADMIN=false;cloud=false;MYAPP=null;APPS=[];
+ if(UID){try{ADMIN=!!must(await sb.from('admins').select('user_id').eq('user_id',UID).maybeSingle())}catch(e){}
+  try{const d=must(await sb.from('passports').select('pp,tasks').eq('user_id',UID).maybeSingle());cloud=true;if(d){if(d.pp)PP=Object.assign({},DEF,d.pp);if(Array.isArray(d.tasks))DONE=d.tasks;selCity=PP.city}}catch(e){cloud=false}
+  await loadMyApp();await loadApps()}
+ sample=UID?true:null;applyLang()}
+function standalone(){const st=document.createElement('style');st.textContent='#acct,.joinband,a[href="#join"],a[href="#account"],#navAdmin{display:none!important}';document.head.appendChild(st)}
+
+/* ---------- boot ---------- */
+sample=undefined;applyLang();route();
+(async()=>{
+ let cfg=null;try{const r=await fetch('/api/config');if(r.ok)cfg=await r.json()}catch(e){}
+ if(!cfg||!cfg.url||!cfg.anon||!window.supabase){sample=null;standalone();applyLang();return}
+ sb=window.supabase.createClient(cfg.url,cfg.anon,{auth:{flowType:'pkce',detectSessionInUrl:true,persistSession:true}});
+ provMode='loading';renderProv();
+ await loadProviders();
+ const {data}=await sb.auth.getSession();
+ if(/[?&]code=/.test(location.search))history.replaceState(null,'',location.pathname+location.hash);
+ await afterAuth(data?data.session:null);
+ sb.auth.onAuthStateChange((ev,s)=>{const id=s&&s.user?s.user.id:null;if(id!==UID)setTimeout(()=>afterAuth(s),0);else SESSION=s});
+})();
+}
+</script>
+</body>
+</html>
